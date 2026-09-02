@@ -1559,7 +1559,7 @@
           <div class="study-copy">
             <span class="analysis-num">03 / SYSTEM INTEGRATION</span><span class="analysis-paper">HarnessDev</span>
             <h3>A runnable harness can still contain dead mechanisms.</h3>
-            <p>All 18 Code harnesses run, but some state and memory mechanisms never appear during formal execution. In the evolution study, agents also edit execution and tools far more often than state management.</p>
+            <p>In HarnessDev, LLMs created 18 Code harnesses, and all of them run. But some state and memory mechanisms in the code never appear during formal execution. During evolution, agents mostly change execution flow and tools, and rarely change state management.</p>
             <div class="limit"><strong>Evidence boundary.</strong> Creation analysis covers 18 Code artifacts. A triggered component is not necessarily useful. Evolution categories overlap and cover 64 version switches from nine single trajectories. Post-freeze held-out evaluation covers SWE-Pro only.</div>
           </div>
           <div class="mini-grid">
@@ -1620,7 +1620,7 @@
       <article>
         <section id="synthesis">
           <h2>Which changes should persist?</h2>
-          <p class="lead">Each study adds one check outside the update process that produced the change. Together, they define three tests for reusable improvement.</p>
+          <p class="lead">These results come from the three benchmarks: Aspire tests whether the target was chosen well, S³Gym tests whether experience improves the next decision, and HarnessDev tests whether harness changes hold up on held-out tasks and under a different executor.</p>
           <div class="observation-grid">
             <div class="observation">
               <div class="big-num">01</div>
@@ -1842,7 +1842,7 @@
 
         "03 / SYSTEM INTEGRATION": "03 / 系统整合",
         "A runnable harness can still contain dead mechanisms.": "Harness 可以运行，其中一些机制却可能从未运行。",
-        "All 18 Code harnesses run, but some state and memory mechanisms never appear during formal execution. In the evolution study, agents also edit execution and tools far more often than state management.": "18 个 Code Harness 都能运行，但部分状态和记忆机制从未在正式运行中出现。Evolution 实验中，Agent 也更常修改执行流程和工具，很少修改状态管理。",
+        "In HarnessDev, LLMs created 18 Code harnesses, and all of them run. But some state and memory mechanisms in the code never appear during formal execution. During evolution, agents mostly change execution flow and tools, and rarely change state management.": "HarnessDev 中的 18 个 Code Harness 都由 LLM 创建，并且都能运行。但写入代码的部分状态和记忆机制从未在正式运行中出现。后续 Evolution 中，Agent 主要修改执行流程和工具，很少修改状态管理。",
         "Creation analysis covers 18 Code artifacts. A triggered component is not necessarily useful. Evolution categories overlap and cover 64 version switches from nine single trajectories. Post-freeze held-out evaluation covers SWE-Pro only.": "Creation 分析覆盖 18 个 Code 产物。组件被触发，只能说明它运行过，不能说明它有效。Evolution 的编辑类别可以重叠，覆盖 9 条单轨迹中的 64 次版本切换。冻结后的留出评测只覆盖 SWE-Pro。",
         "Agents edit execution far more than state management or verification": "Agent 修改执行流程的次数远多于状态管理或验证",
         "64 official switches · overlapping edit categories": "64 次正式切换 · 编辑类别可重叠",
@@ -1862,7 +1862,7 @@
         "checkpoint events": "检查点事件",
         "across 26,679 task trajectories": "在 26,679 条任务轨迹中",
         "18 / 108 components never observed · all state or memory": "108 个组件中有 18 个从未被观察到 · 全部属于状态或记忆",
-        "Each study adds one check outside the update process that produced the change. Together, they define three tests for reusable improvement.": "每项研究都使用一项独立于改动过程的检验。合在一起，这三项检验用来判断改动能否复用。",
+        "These results come from the three benchmarks: Aspire tests whether the target was chosen well, S³Gym tests whether experience improves the next decision, and HarnessDev tests whether harness changes hold up on held-out tasks and under a different executor.": "下面三条分别来自 Aspire、S³Gym 和 HarnessDev 的结果：Aspire 检查目标是否选对，S³Gym 检查经验能否改善下一次决策，HarnessDev 检查 Harness 改动能否通过留出任务和更换执行模型后的检验。",
         "Test the target on an evaluation the agent cannot see.": "用 Agent 看不到的评测检验目标。",
         "Twenty-one of 30 Aspire cells produced an eligible checkpoint; only one retained a gain. With vague goals, decision time rises, active training and evaluation fall, and LoRA use increases from 24.1% to 89.8%. The search changed. The target was not yet validated.": "Aspire 的 30 个单元中，21 个产出了进入后续筛选的检查点，最终只有 1 个增益被保留。面对模糊目标，决策时间增加，主动训练与评测时间减少，LoRA 使用率从 24.1% 升至 89.8%。搜索过程变了，但目标仍未得到验证。",
         "Test the lesson on the next decision.": "用下一次决策检验经验。",
