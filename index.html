@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A research perspective on self-developing agents: turning each deployment into compounding capability across targets, experience, and agent harnesses." />
-  <title>Self-Developing Agents — Turning Field Deployments into Validated, Reusable Capability</title>
+  <meta name="description" content="A research perspective on self-evolving agents and closed-loop RSI: forming targets, learning from noisy experience, and integrating validated changes into agent systems." />
+  <title>Self-Developing Agents — From Half-Loop to Closed-Loop RSI</title>
   <style>
     :root {
       --bg: #f7f6f2;
@@ -18,6 +18,8 @@
       --reading: 760px;
       --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
       --font-serif: Georgia, "Times New Roman", Times, serif;
+      --font-sans-zh: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      --font-serif-zh: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, SimSun, serif;
     }
 
     * { box-sizing: border-box; }
@@ -30,36 +32,9 @@
       -webkit-font-smoothing: antialiased;
     }
     html[lang="zh-CN"] body {
-      font-family: "Times New Roman", "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+      font-family: var(--font-sans-zh);
       font-variant-east-asian: normal;
     }
-    html[lang="zh-CN"] body * { font-family: inherit; }
-    html[lang="zh-CN"] p,
-    html[lang="zh-CN"] li,
-    html[lang="zh-CN"] .dek,
-    html[lang="zh-CN"] .overview-head p,
-    html[lang="zh-CN"] .overview-layer p,
-    html[lang="zh-CN"] .evidence-intro p,
-    html[lang="zh-CN"] .study-copy .limit,
-    html[lang="zh-CN"] .goal-box p,
-    html[lang="zh-CN"] .coming-soon p {
-      line-height: 1.82;
-      letter-spacing: .012em;
-    }
-    html[lang="zh-CN"] h1,
-    html[lang="zh-CN"] h2,
-    html[lang="zh-CN"] h3,
-    html[lang="zh-CN"] h4 {
-      font-family: "Times New Roman", "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
-      letter-spacing: -.018em;
-      line-height: 1.24;
-    }
-    html[lang="zh-CN"] h1 { font-weight: 650; }
-    html[lang="zh-CN"] .section-label,
-    html[lang="zh-CN"] .kicker,
-    html[lang="zh-CN"] .board-eyebrow,
-    html[lang="zh-CN"] .mini-sub,
-    html[lang="zh-CN"] .byline { letter-spacing: .04em; }
     a { color: inherit; }
     .shell { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 
@@ -374,11 +349,6 @@
       color: #a9c0b4;
       font-size: 16px;
     }
-    .fde-metrics { display: grid; grid-template-columns: 1fr; gap: 11px; margin-top: 32px; }
-    .fde-metric { padding: 15px 17px 16px; border: 1px solid #d2d0c7; border-left: 3px solid #6d8f80; background: #f8f7f2; }
-    .fde-metric span { display: block; color: #517466; font-size: 9px; font-weight: 760; letter-spacing: .09em; text-transform: uppercase; }
-    .fde-metric strong { display: block; margin-top: 7px; color: #2b2e2b; font-size: 14px; font-weight: 610; line-height: 1.45; }
-
     /* Three-layer research overview */
     .overview-section {
       padding: 72px 0 78px;
@@ -438,10 +408,6 @@
       overflow: hidden;
     }
     .leaderboard-intro {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
-      gap: 72px;
-      align-items: end;
       margin-bottom: 34px;
     }
     .section-label {
@@ -452,14 +418,7 @@
       text-transform: uppercase;
       margin-bottom: 14px;
     }
-    .leaderboard-intro h2 { margin: 0; max-width: 650px; }
-    .leaderboard-intro p {
-      color: #4d4e4a;
-      font-family: var(--font-sans);
-      font-size: 16px;
-      line-height: 1.55;
-      margin: 0 0 3px;
-    }
+    .leaderboard-intro h2 { margin: 0; max-width: 820px; }
     .leaderboard-shell {
       --board-accent: #2f6759;
       display: grid;
@@ -769,13 +728,12 @@
     .mini-figure h4 { margin: 0; font-size: 12px; font-weight: 700; }
     .mini-figure .mini-sub { display: block; min-height: 28px; margin-top: 4px; color: var(--muted); font-size: 9px; line-height: 1.4; }
     .mini-figure svg { display: block; width: 100%; height: 190px; margin-top: 8px; }
-    .takeaway-band { margin-top: 50px; padding: 29px 32px; border-left: 3px solid var(--accent); background: #eceae3; }
-    .takeaway-band p { margin: 0; font-size: 24px; line-height: 1.35; letter-spacing: -.02em; }
-
     .article-wrap {
       width: min(calc(100% - 48px), var(--max));
       padding: 74px 0 120px;
     }
+    .article-wrap-before-fde { padding-bottom: 58px; }
+    .article-wrap-after-fde { padding-top: 68px; }
 
     article { min-width: 0; }
     section { padding: 0 0 78px; margin: 0 0 78px; border-bottom: 1px solid var(--line); }
@@ -802,8 +760,7 @@
     #goal > h2 { grid-column: 1; grid-row: 1; max-width: 470px; }
     #goal > .lead { grid-column: 1; grid-row: 2; max-width: 440px; margin: 0; }
     #goal > p:not(.lead) { grid-column: 2; grid-row: 1; }
-    #goal > .goal-box { grid-column: 2; grid-row: 2; margin-top: 0; }
-    #goal > .program-block { grid-column: 2; grid-row: 3; margin-top: 44px; }
+    #goal > .program-block { grid-column: 2; grid-row: 2; margin-top: 44px; }
     .program-block > h3 { margin-bottom: 14px; }
     .program-block > .program-intro { font-size: 18px; color: #41423f; margin-bottom: 0; }
     h2 {
@@ -925,14 +882,6 @@
     .observation-grid .observation h3 { font-size: 21px; }
     .observation-grid .observation p { font-size: 17px; }
 
-    .goal-box {
-      background: #181818;
-      color: #f4f3ef;
-      padding: 34px 36px;
-      margin-top: 38px;
-    }
-    .goal-box p { font-family: var(--font-serif); font-size: 22px; line-height: 1.48; letter-spacing: -.018em; margin: 0; }
-
     .program {
       margin-top: 28px;
     }
@@ -950,6 +899,86 @@
     footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 12px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
 
+    /* Chinese typography keeps editorial copy distinct from interface text. */
+    html[lang="zh-CN"] { --reading: 720px; }
+    html[lang="zh-CN"] h1,
+    html[lang="zh-CN"] h2,
+    html[lang="zh-CN"] h3,
+    html[lang="zh-CN"] h4,
+    html[lang="zh-CN"] button,
+    html[lang="zh-CN"] .byline,
+    html[lang="zh-CN"] .section-label,
+    html[lang="zh-CN"] .kicker,
+    html[lang="zh-CN"] .section-nav,
+    html[lang="zh-CN"] .papers-menu,
+    html[lang="zh-CN"] .board-tabs,
+    html[lang="zh-CN"] .board-head,
+    html[lang="zh-CN"] .board-note,
+    html[lang="zh-CN"] .board-hint,
+    html[lang="zh-CN"] .s3-control-bar,
+    html[lang="zh-CN"] .viz-card,
+    html[lang="zh-CN"] .mini-figure,
+    html[lang="zh-CN"] .fde-loop-note,
+    html[lang="zh-CN"] .study-copy .limit,
+    html[lang="zh-CN"] .question,
+    html[lang="zh-CN"] svg text {
+      font-family: var(--font-sans-zh);
+    }
+    html[lang="zh-CN"] h1,
+    html[lang="zh-CN"] h2,
+    html[lang="zh-CN"] h3,
+    html[lang="zh-CN"] h4 {
+      line-break: strict;
+      text-wrap: balance;
+    }
+    html[lang="zh-CN"] h1 {
+      max-width: 1080px;
+      font-family: var(--font-sans);
+      font-size: clamp(50px, 6vw, 80px);
+      font-weight: 650;
+      line-height: 1.1;
+      letter-spacing: -.035em;
+    }
+    html[lang="zh-CN"] h2 {
+      font-size: clamp(34px, 3.6vw, 46px);
+      line-height: 1.16;
+      letter-spacing: -.025em;
+    }
+    html[lang="zh-CN"] h3 { line-height: 1.32; letter-spacing: -.018em; }
+    html[lang="zh-CN"] h4 { line-height: 1.4; letter-spacing: -.01em; }
+    html[lang="zh-CN"] p,
+    html[lang="zh-CN"] li {
+      font-family: var(--font-serif-zh);
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      line-break: strict;
+      overflow-wrap: break-word;
+      text-wrap: pretty;
+    }
+    html[lang="zh-CN"] article p { max-width: 42em; }
+    html[lang="zh-CN"] .hero { min-height: 550px; padding: 72px 0 66px; }
+    html[lang="zh-CN"] .hero-inner { width: min(1080px, 100%); }
+    html[lang="zh-CN"] .dek {
+      max-width: 720px;
+      font-size: clamp(20px, 2vw, 25px);
+      line-height: 1.62;
+      letter-spacing: -.008em;
+    }
+    html[lang="zh-CN"] .lead { font-size: 23px; line-height: 1.62; letter-spacing: -.008em; }
+    html[lang="zh-CN"] .thesis p { font-size: 21px; line-height: 1.58; letter-spacing: -.008em; }
+    html[lang="zh-CN"] .overview-head p,
+    html[lang="zh-CN"] .evidence-intro p,
+    html[lang="zh-CN"] .last-mile-copy p { font-size: 16px; line-height: 1.72; }
+    html[lang="zh-CN"] .overview-layer p { font-size: 14px; line-height: 1.68; }
+    html[lang="zh-CN"] .study-copy p { font-size: 17px; line-height: 1.68; }
+    html[lang="zh-CN"] .study-copy .limit { font-size: 12px; line-height: 1.6; }
+    html[lang="zh-CN"] .section-label,
+    html[lang="zh-CN"] .kicker,
+    html[lang="zh-CN"] .board-eyebrow,
+    html[lang="zh-CN"] .mini-sub,
+    html[lang="zh-CN"] .byline { letter-spacing: .04em; }
+
     @media (max-width: 900px) {
       .last-mile-head { grid-template-columns: 1fr; gap: 38px; }
       .overview-head, .evidence-intro { grid-template-columns: 1fr; gap: 20px; }
@@ -957,7 +986,6 @@
       .overview-layer { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
       .overview-layer:last-child { border-bottom: 0; }
       .overview-layer:not(:last-child)::after { top: auto; right: 28px; bottom: -14px; transform: rotate(90deg); }
-      .leaderboard-intro { grid-template-columns: 1fr; gap: 20px; }
       .leaderboard-shell { grid-template-columns: 1fr; }
       .board-tabs { flex-direction: row; border-right: 0; border-bottom: 1px solid var(--line); }
       .board-tab { min-height: 112px; border-left: 0; border-bottom: 3px solid transparent; border-right: 1px solid var(--line); }
@@ -974,7 +1002,6 @@
       #deployment > h2, #goal > h2 { max-width: none; margin-bottom: 30px; }
       #goal > .lead { max-width: none; margin-bottom: 1.25em; }
       #deployment > .thesis { margin: 44px 0; }
-      #goal > .goal-box { margin-top: 38px; }
       .observation-grid { display: block; }
       .observation-grid .observation {
         display: grid;
@@ -1000,44 +1027,133 @@
       .language-switch button { min-width: 30px; padding-inline: 5px; }
       .seed-logo { height: 17px; max-width: 100px; }
       .tokenwave-logo { height: 19px; max-width: 90px; }
+      .topbar { position: relative; }
       .hero { min-height: auto; padding: 72px 0 62px; }
-      .section-nav-inner { width: 100%; }
+      .section-nav { top: 0; }
+      [id] { scroll-margin-top: 70px; }
+      .section-nav::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 22px;
+        pointer-events: none;
+        background: linear-gradient(90deg, transparent, var(--bg));
+      }
+      .section-nav .section-nav-inner {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding-inline: max(14px, env(safe-area-inset-left)) max(22px, env(safe-area-inset-right));
+        scroll-padding-inline: 14px;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-inline: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+      }
       .section-nav-title { display: none; }
+      .section-nav a {
+        min-height: 48px;
+        padding-inline: 12px;
+        font-size: 12px;
+        scroll-snap-align: start;
+      }
+      .papers-trigger { min-height: 40px; margin-block: 7px; font-size: 12px; }
       .papers-menu { right: 14px; }
       .last-mile-section { padding: 56px 0 60px; }
-      .fde-metrics { grid-template-columns: 1fr; }
       .fde-panel { padding: 22px 20px 20px; }
       .leaderboard-section { padding: 54px 0 58px; }
       .overview-section, .evidence-section { padding: 54px 0 60px; }
-      .board-tabs { overflow-x: auto; }
-      .board-tab { flex: 0 0 145px; padding: 18px 15px; min-height: 98px; }
+      .leaderboard-shell, .board-stage, .board-tabs { min-width: 0; }
+      .board-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+        overflow: visible;
+      }
+      .board-tab { min-width: 0; padding: 14px 8px; min-height: 88px; }
       .board-tab .index { margin-bottom: 10px; }
-      .board-tab strong { font-size: 17px; }
+      .board-tab .index { font-size: 12px; }
+      .board-tab strong { font-size: 15px; overflow-wrap: anywhere; }
       .board-tab small { display: none; }
-      .board-panel { padding: 23px 18px 19px; }
+      .board-panel { padding: 23px 14px 19px; }
       .board-head { display: block; }
       .board-metric { margin-top: 15px; text-align: left; }
       .board-metric strong.metric-words { white-space: normal; }
-      .board-metric span { max-width: none; }
+      .board-metric span { max-width: none; font-size: 12px; }
       .board-metric strong.metric-words + span { width: auto; max-width: none; margin-left: 0; text-align: left; }
       .board-body { padding-top: 21px; gap: 23px; }
-      .s3-control-bar { padding: 13px 0; }
-      .game-picker { display: flex; overflow-x: auto; }
-      .game-picker button { flex: 0 0 auto; padding: 8px 11px; }
+      .s3-control-bar { min-width: 0; padding: 13px 0; }
+      .s3-control-copy { width: 100%; min-width: 0; }
+      .s3-control-copy strong, .s3-control-copy span { font-size: 12px; line-height: 1.45; }
+      .s3-control-copy span { overflow-wrap: anywhere; }
+      .game-picker {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+      }
+      .game-picker button { flex: 0 0 auto; min-height: 40px; padding: 8px 12px; font-size: 12px; }
       .rank-name strong { font-size: 13px; }
       .trend-card { min-height: 218px; }
       .trend-card svg { height: 160px; }
       .evidence-card { min-height: 218px; }
-      .viz-card svg { height: 230px; }
+      .viz-card,
+      .mini-figure {
+        position: relative;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+        scrollbar-color: #aaa9a3 transparent;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+      }
+      .viz-card::-webkit-scrollbar,
+      .mini-figure::-webkit-scrollbar,
+      .game-picker::-webkit-scrollbar,
+      .board-tabs::-webkit-scrollbar { height: 6px; }
+      .viz-card::-webkit-scrollbar-thumb,
+      .mini-figure::-webkit-scrollbar-thumb,
+      .game-picker::-webkit-scrollbar-thumb,
+      .board-tabs::-webkit-scrollbar-thumb { border-radius: 999px; background: #aaa9a3; }
+      .viz-card::after,
+      .mini-figure::after {
+        content: "↔";
+        position: sticky;
+        left: calc(100% - 30px);
+        bottom: 7px;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 24px;
+        margin: -30px 2px 4px 0;
+        border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+        border-radius: 999px;
+        color: var(--muted);
+        background: color-mix(in srgb, var(--surface) 92%, transparent);
+        box-shadow: 0 2px 8px rgba(30, 31, 29, .08);
+        font: 700 12px var(--font-sans);
+        pointer-events: none;
+      }
+      .viz-card > svg { width: 620px; min-width: 620px; height: auto; aspect-ratio: 520 / 300; }
+      .viz-card > svg[viewBox="0 0 500 300"] { aspect-ratio: 500 / 300; }
+      .chart-label, .chart-value { font-size: 10px; }
+      .viz-head span, .chart-legend { font-size: 12px; }
       .mini-grid { grid-template-columns: 1fr; }
-      .mini-figure svg { height: 205px; }
-      .takeaway-band { padding: 23px 22px; }
-      .takeaway-band p { font-size: 21px; }
+      .mini-figure > svg { width: 460px; min-width: 460px; height: auto; aspect-ratio: 340 / 190; }
+      .mini-figure .mini-sub { min-height: 0; font-size: 12px; }
       .coming-panel { min-height: 520px; }
       .coming-soon { padding: 34px 16px; }
-      .board-note { display: block; }
+      .board-note { display: block; font-size: 12px; }
       .board-note span:last-child { display: block; margin-top: 8px; }
-      .board-hint { text-align: left; }
+      .board-hint { font-size: 12px; text-align: left; }
       .article-wrap { width: min(calc(100% - 28px), var(--max)); padding-top: 50px; }
       .flow { grid-template-columns: 1fr; }
       .flow div + div, .flow div:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
@@ -1046,6 +1162,21 @@
       p, li { font-size: 18px; }
       .lead { font-size: 22px; }
       .footer-inner { flex-direction: column; }
+      html[lang="zh-CN"] .hero { min-height: auto; padding: 58px 0 54px; }
+      html[lang="zh-CN"] h1 { font-size: clamp(42px, 13vw, 56px); line-height: 1.12; }
+      html[lang="zh-CN"] h2 { font-size: clamp(30px, 8.7vw, 38px); line-height: 1.2; }
+      html[lang="zh-CN"] p,
+      html[lang="zh-CN"] li { font-size: 17px; line-height: 1.7; }
+      html[lang="zh-CN"] .dek { font-size: 19px; line-height: 1.62; }
+      html[lang="zh-CN"] .lead { font-size: 21px; line-height: 1.6; }
+      html[lang="zh-CN"] .byline { white-space: nowrap; font-size: 11px; letter-spacing: .01em; }
+      html[lang="zh-CN"] .language-switch button,
+      html[lang="zh-CN"] .papers-menu small,
+      html[lang="zh-CN"] .paper-action,
+      html[lang="zh-CN"] .fde-step small,
+      html[lang="zh-CN"] .overview-output,
+      html[lang="zh-CN"] .overview-index,
+      html[lang="zh-CN"] .paper-chip { font-size: 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .board-panel, .board-tab { transition: none; }
@@ -1070,22 +1201,22 @@
   <main>
     <header class="hero">
       <div class="shell hero-inner">
-        <div class="kicker">From forward-deployed work to compounding capability</div>
+        <div class="kicker">TL;DR · CLOSED-LOOP RSI</div>
         <p class="byline">ByteDance Seed and TokenWave · September 1, 2026</p>
         <h1>Self-Developing Agents</h1>
-        <p class="dek">Today’s agents can work. They do not yet reliably compound. The next frontier is an agent that can turn each deployment into validated capability for the next: discovering what matters, learning the right lesson from real work, and carrying forward only the changes that deserve to persist.</p>
+        <p class="dek">Most recursive self-improvement (RSI) systems discussed today are half-loop. They assume a Golden Verifier that keeps the model moving in the right direction. Like human learning and improvement, RSI faces three problems: How does a broad, vague goal become concrete action? Without a teacher, can we judge our own behavior and learn from it? How does experience become part of the way we act?</p>
       </div>
     </header>
 
     <nav class="section-nav" aria-label="Explore this perspective">
       <div class="shell section-nav-inner">
         <span class="section-nav-title">Explore</span>
-        <a href="#last-mile">Why FDEs compound</a>
-        <a href="#overview">Three problems</a>
-        <a href="#leaderboard">Experimental evidence</a>
-        <a href="#evidence">Where it breaks</a>
-        <a href="#synthesis">What compounds</a>
-        <a href="#deployment">Deployment</a>
+        <a href="#overview">Three questions</a>
+        <a href="#leaderboard">Main results</a>
+        <a href="#evidence">Why gains fail</a>
+        <a href="#synthesis">What to keep</a>
+        <a href="#last-mile">FDE analogy</a>
+        <a href="#deployment">Implications</a>
         <a href="#goal">Research goal</a>
         <button class="papers-trigger" type="button" aria-expanded="false" aria-controls="papers-menu" aria-haspopup="true"><span>Papers</span></button>
       </div>
@@ -1096,59 +1227,33 @@
       </div>
     </nav>
 
-    <section class="last-mile-section" id="last-mile" aria-labelledby="last-mile-title">
-      <div class="shell">
-        <div class="last-mile-head">
-          <div class="last-mile-copy">
-            <div class="section-label">Why forward-deployed work compounds</div>
-            <h2 id="last-mile-title">A great deployment does more than solve today’s problem. It makes tomorrow’s deployment better.</h2>
-            <p>Every organization defines good work differently. Forward-deployed engineers close the gap between general capability and local productivity by discovering the real problem, delivering a working solution, learning what was reusable, and folding validated lessons back into the platform. Their leverage comes not only from local delivery, but from turning local work into reusable capability.</p>
-            <div class="fde-metrics" aria-label="Two measures of a compounding deployment loop">
-              <div class="fde-metric"><span>Outcome value</span><strong>Are deployments solving increasingly important problems for the customer?</strong></div>
-              <div class="fde-metric"><span>Product leverage</span><strong>Does the core system make each new deployment faster, easier, and more reusable?</strong></div>
-            </div>
-          </div>
-          <div class="fde-panel">
-            <div class="fde-loop" aria-label="The forward-deployed learning loop">
-              <div class="fde-step"><span class="step-index">01</span><div><small>Platform</small><strong>Start with general-purpose capability</strong></div></div>
-              <div class="fde-step"><span class="step-index">02</span><div><small>Discover</small><strong>Find the problem the customer actually needs solved</strong></div></div>
-              <div class="fde-step"><span class="step-index">03</span><div><small>Deliver</small><strong>Build a working solution in the field</strong></div></div>
-              <div class="fde-step"><span class="step-index">04</span><div><small>Learn</small><strong>Extract the recurring pattern from local experience</strong></div></div>
-              <div class="fde-step"><span class="step-index">05</span><div><small>Compound</small><strong>Fold validated capability back into the system</strong></div></div>
-            </div>
-            <p class="fde-loop-note"><span aria-hidden="true">↺</span>The loop compounds only when a local fix becomes a validated capability that the next deployment can reuse.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="overview-section" id="overview" aria-labelledby="overview-title">
       <div class="shell">
         <div class="overview-head">
-          <div><div class="section-label">From FDE to self-developing agent</div><h2 id="overview-title">What if an agent could learn from deployments the way a great FDE does?</h2></div>
-          <p>A self-developing agent should turn deployment experience into validated capability that improves future deployments. Our work suggests this requires solving three distinct problems: deciding what is worth improving, extracting the right lesson from experience, and integrating the right change into the persistent system. Aspire, S³Gym, and HarnessDev study these problems from complementary angles.</p>
+          <div><div class="section-label">Three benchmarks · three questions</div><h2 id="overview-title">Three questions for self-evolving agents</h2></div>
+          <p>We break the path to closed-loop RSI into three questions, each studied with a separate benchmark.</p>
         </div>
         <div class="overview-loop" aria-label="Three complementary problems a self-developing agent must solve">
           <div class="overview-layer" style="--layer-accent:#2f6759">
             <span class="overview-index">01 / TARGET</span>
-            <h3>Find the right thing to improve</h3>
+            <h3>What should the agent improve?</h3>
             <span class="paper-chip">Aspire</span>
-            <p>Operationalize a broad capability goal into sub-goals, data, supervision, and an update strategy—without seeing the final hidden evaluation.</p>
-            <div class="overview-output">Core question<strong>Is this the right target to optimize?</strong></div>
+            <p>Aspire gives the agent a broad goal such as “improve mathematical reasoning,” without revealing the downstream task or final evaluation. The agent must decide what to learn and how.</p>
+            <div class="overview-output">Test<strong>Does the agent-built objective transfer to the hidden evaluation?</strong></div>
           </div>
           <div class="overview-layer" style="--layer-accent:#486a8a">
             <span class="overview-index">02 / EXPERIENCE</span>
-            <h3>Learn the right lesson</h3>
+            <h3>Can it learn from experience?</h3>
             <span class="paper-chip">S³Gym</span>
-            <p>Test behavior, judge outcomes, and turn raw trajectories into history, compressed memory, or parameter updates that alter future decisions.</p>
-            <div class="overview-output">Core question<strong>Does this experience improve future decisions?</strong></div>
+            <p>S³Gym tests whether an agent can generate experience, judge what worked, and turn the result into better future decisions.</p>
+            <div class="overview-output">Test<strong>Does the experience transfer to held-out conditions?</strong></div>
           </div>
           <div class="overview-layer" style="--layer-accent:#9b4c36">
             <span class="overview-index">03 / SYSTEM</span>
-            <h3>Make the right change persist</h3>
+            <h3>Can the improvement persist?</h3>
             <span class="paper-chip">HarnessDev</span>
-            <p>Encode lessons in the persistent execution substrate: tools, context, control flow, recovery, state, and verification.</p>
-            <div class="overview-output">Core question<strong>Does this system change generalize?</strong></div>
+            <p>HarnessDev tests whether a model can build a runnable agent harness, then evolve it using downstream execution feedback.</p>
+            <div class="overview-output">Test<strong>Does the harness work on held-out tasks and with another executor?</strong></div>
           </div>
         </div>
       </div>
@@ -1159,9 +1264,8 @@
         <div class="leaderboard-intro">
           <div>
             <div class="section-label">Experimental evidence · three failure modes</div>
-            <h2 id="leaderboard-title">Changing an agent is easy. Knowing what actually improved is hard.</h2>
+            <h2 id="leaderboard-title">Where self-evolution breaks</h2>
           </div>
-          <p>None of these studies runs inside a live customer deployment. Each isolates one step of the loop above in a setting where the ground truth is knowable—because that is the only way to tell a real gain from a local one. Across all three, the same pattern appears in different forms: a system can execute an update without improving the intended capability, accumulate experience without learning a better policy, or make promising local edits that fail to transfer. The panels below show where apparent self-improvement breaks down.</p>
         </div>
 
         <div class="leaderboard-shell" data-leaderboard>
@@ -1169,29 +1273,29 @@
             <button class="board-tab" id="tab-aspire" role="tab" aria-selected="true" aria-controls="panel-aspire" data-board="aspire" style="--tab-accent:#2f6759">
               <span class="index">01 / TARGET</span>
               <strong>Aspire</strong>
-              <small>Choose what to learn</small>
+              <small>Choose what to improve</small>
             </button>
             <button class="board-tab" id="tab-s3gym" role="tab" aria-selected="false" aria-controls="panel-s3gym" data-board="s3gym" style="--tab-accent:#486a8a" tabindex="-1">
               <span class="index">02 / EXPERIENCE</span>
               <strong>S³Gym</strong>
-              <small>Evolve what experience teaches</small>
+              <small>Learn from experience</small>
             </button>
             <button class="board-tab" id="tab-harness" role="tab" aria-selected="false" aria-controls="panel-harness" data-board="harness" style="--tab-accent:#9b4c36" tabindex="-1">
               <span class="index">03 / SYSTEM</span>
               <strong>HarnessDev</strong>
-              <small>Evolve how the agent works</small>
+              <small>Create and evolve the harness</small>
             </button>
           </div>
 
           <div class="board-stage" aria-live="polite">
             <div class="board-panel" id="panel-harness" role="tabpanel" aria-labelledby="tab-harness" data-panel="harness" data-accent="#9b4c36" hidden>
               <div class="board-head">
-                <div><div class="board-eyebrow">Harness evolution · visible feedback + post-freeze held-out evaluation</div><h3>Make improvement persistent in the system</h3></div>
+                <div><div class="board-eyebrow">Harness evolution · visible feedback + post-freeze held-out evaluation</div><h3>Do harness improvements transfer?</h3></div>
                 <div class="board-metric"><strong class="metric-words">53.1% direction agreement</strong><span>34 of 64 comparable version switches move in the same direction</span></div>
               </div>
               <div class="board-body">
                 <div class="viz-card" aria-label="Visible feedback gain compared with held-out gain">
-                  <div class="viz-head"><strong>How much of the visible gain transfers?</strong><span>Declared final minus H₀ · five self-runtime creator–executor lineages</span></div>
+                  <div class="viz-head"><strong>Visible gain vs held-out gain</strong><span>Declared final minus H₀ · five self-runtime creator–executor lineages</span></div>
                   <div class="chart-legend"><span><i class="legend-swatch" style="--swatch:#9b4c36"></i>Visible feedback pair</span><span><i class="legend-swatch" style="--swatch:#a9aaa5"></i>SWE-Pro held-out 630</span></div>
                   <svg viewBox="0 0 520 300" role="img" aria-label="Grouped bars comparing visible and held-out gains across five self-runtime lineages; Opus 4.8 is the only lineage whose held-out gain exceeds its visible gain">
                     <path class="chart-grid" d="M48 232H510M48 169H510M48 106H510M48 43H510"/><path class="chart-axis" d="M48 43V232H510"/>
@@ -1218,7 +1322,7 @@
                   </svg>
                 </div>
                 <div class="viz-card" aria-label="Held-out harness gain in the fixed Gemini executor ablations">
-                  <div class="viz-head"><strong>Does the improvement survive a runtime change?</strong><span>Held-out-630 gain under a fixed Gemini executor · declared final minus H₀ · the Gemini lineage is omitted because Gemini is the fixed executor</span></div>
+                  <div class="viz-head"><strong>Held-out gain after an executor swap</strong><span>Held-out-630 gain under a fixed Gemini executor · declared final minus H₀ · the Gemini lineage is omitted because Gemini is the fixed executor</span></div>
                   <svg viewBox="0 0 500 300" role="img" aria-label="Diverging bars showing positive held-out transfer for Opus and regressions for Qwen, DeepSeek, and GPT-5.5 under a fixed Gemini executor">
                     <path class="chart-grid" d="M48 43H480M48 90.3H480M48 137.5H480M48 184.8H480M48 232H480"/><path class="chart-axis" d="M48 43V232M48 90.3H480"/>
                     <g class="chart-label"><text x="38" y="46" text-anchor="end">+4</text><text x="38" y="93" text-anchor="end">0</text><text x="38" y="140.5" text-anchor="end">−4</text><text x="38" y="187.8" text-anchor="end">−8</text><text x="38" y="235" text-anchor="end">−12</text></g>
@@ -1235,12 +1339,12 @@
                   </svg>
                 </div>
               </div>
-              <div class="board-note"><span class="takeaway"><strong>Visible progress is not a reliable guide to what generalizes.</strong> Feedback and held-out scores move in the same direction in only 34 of 64 comparable version switches, and just 2 of 9 declared versions are held-out optimal.</span><span>Nine single trajectories · 73 official versions · 64 adjacent switches</span></div>
+              <div class="board-note"><span class="takeaway"><strong>Visible gains often fail to transfer.</strong> Feedback and held-out scores agree on only 34 of 64 comparable version switches. Just 2 of 9 declared final versions are best on the held-out set.</span><span>Nine single trajectories · 73 official versions · 64 adjacent switches</span></div>
             </div>
 
             <div class="board-panel" id="panel-s3gym" role="tabpanel" aria-labelledby="tab-s3gym" data-panel="s3gym" data-accent="#486a8a" hidden>
               <div class="board-head">
-                <div><div class="board-eyebrow">History Context vs Summary Memory · seven strict-mode environments</div><h3>Evolve what experience teaches</h3></div>
+                <div><div class="board-eyebrow">History Context vs Summary Memory · seven strict-mode environments</div><h3>Learn from experience</h3></div>
                 <div class="board-metric"><strong class="metric-words">No universal memory winner</strong><span>Raw AUC+: Summary leads in 3 games, History in 3, Tetris split</span></div>
               </div>
               <div class="s3-control-bar">
@@ -1275,17 +1379,17 @@
                   </svg>
                 </div>
               </div>
-              <div class="board-note"><span class="takeaway"><strong>There is no universally best way to preserve experience.</strong> Select a game to see how the same seven models change under raw history versus compressed memory.</span><span>Both charts use raw model-level AUC+. The case study below re-ranks the same runs under baseline-normalized NABA, which moves the tie from Tetris to Chess.</span></div>
+              <div class="board-note"><span class="takeaway"><strong>No memory method wins everywhere.</strong> Raw history and summary memory trade places across games, and the winner changes with score normalization.</span><span>Both charts use raw model-level AUC+. The case study below re-ranks the same runs under baseline-normalized NABA, which moves the tie from Tetris to Chess.</span></div>
             </div>
 
             <div class="board-panel active" id="panel-aspire" role="tabpanel" aria-labelledby="tab-aspire" data-panel="aspire" data-accent="#2f6759">
               <div class="board-head">
-                <div><div class="board-eyebrow">Aspire · five decision-agent configurations × six capability goals</div><h3>Choose what to learn</h3></div>
+                <div><div class="board-eyebrow">Aspire · five decision-agent configurations × six capability goals</div><h3>Choose what to improve</h3></div>
                 <div class="board-metric"><strong class="metric-words">1 retained gain / 30 cells</strong><span>Only one cell produced a gain that cleared the retention threshold</span></div>
               </div>
               <div class="board-body">
                 <div class="viz-card" aria-label="Vague-target outcome progression">
-                  <div class="viz-head"><strong>Almost every run produced a checkpoint. Almost none produced a better model.</strong><span>Each run starts from a broad capability goal; later stages apply completion and baseline checks</span></div>
+                  <div class="viz-head"><strong>Most runs produced a checkpoint. Only one retained a gain.</strong><span>Each run starts from a broad capability goal; later stages apply completion and baseline checks</span></div>
                   <svg id="aspire-outcome-chart" viewBox="0 0 500 300" role="img" aria-label="Bar chart showing 30 configuration-goal cells, 28 with an evaluated checkpoint, 21 with an eligible checkpoint, and one retained improvement. Hover or focus the retained-improvement bar to see the retention detail.">
                     <path class="chart-grid" d="M48 238H480M48 173H480M48 108H480M48 43H480"/>
                     <path class="chart-axis" d="M48 43V238H480"/>
@@ -1308,7 +1412,7 @@
                   </svg>
                 </div>
                 <div class="viz-card" aria-label="Self-optimized mathematics checkpoint trajectory">
-                  <div class="viz-head"><strong>Three improving checkpoints—all worse than the base</strong><span>Qwen3.5-4B Self · hidden-evaluation mathematics score by checkpoint</span></div>
+                  <div class="viz-head"><strong>The checkpoints improve, but all remain below the base model</strong><span>Qwen3.5-4B Self · hidden-evaluation mathematics score by checkpoint</span></div>
                   <div class="chart-legend"><span><i class="legend-swatch" style="--swatch:#2f6759"></i>Self-trained checkpoints</span><span><i class="legend-swatch" style="--swatch:#9b4c36"></i>Unevolved baseline</span></div>
                   <svg viewBox="0 0 500 300" role="img" aria-label="Line chart showing self-trained mathematics checkpoints improving from 0.79 to 1.75 to 2.38 while remaining below the unevolved baseline of 17.86">
                     <path class="chart-grid" d="M54 228H468M54 181H468M54 134H468M54 87H468M54 40H468"/><path class="chart-axis" d="M54 40V228H468"/>
@@ -1326,7 +1430,7 @@
                   </svg>
                 </div>
               </div>
-              <div class="board-note"><span class="takeaway"><strong>Agents can optimize a trajectory without improving the capability.</strong> Across 30 configuration–goal cells, 28 produced an evaluated checkpoint. Two found a checkpoint above the base score, but only one cleared the retention threshold and survived rollback.</span><span>Adaptive-feedback protocol · hidden evaluation set</span></div>
+              <div class="board-note"><span class="takeaway"><strong>Running the update loop is not the same as improving the target capability.</strong> Of 30 configuration–goal cells, 28 produced an evaluated checkpoint. Two beat the base model; only one cleared the retention threshold and was kept.</span><span>Adaptive-feedback protocol · hidden evaluation set</span></div>
             </div>
           </div>
         </div>
@@ -1337,20 +1441,20 @@
     <section class="evidence-section" id="evidence" aria-labelledby="evidence-title">
       <div class="shell">
         <div class="evidence-intro">
-          <div><div class="section-label">Experimental evidence · what actually changes?</div><h2 id="evidence-title">The hard part is not producing change. It is deciding what should carry forward.</h2></div>
-          <p>The evidence above shows which candidate changes survive evaluation. The case studies below explain why so many fail. Across all three, the same question recurs: which local signal deserves to shape the agent’s next starting point?</p>
+          <div><div class="section-label">Why the gains fail</div><h2 id="evidence-title">Three gaps break the loop.</h2></div>
+          <p>The target can be wrong, the lesson can fail to transfer, or the mechanism can exist in code but not at runtime.</p>
         </div>
 
         <div class="study-analysis study-analysis-wide" style="--study-accent:#2f6759">
           <div class="study-copy">
             <span class="analysis-num">01 / TARGET FORMATION</span><span class="analysis-paper">Aspire</span>
-            <h3>A vague goal changes the search before it changes the model.</h3>
-            <p>Vague goals move the bottleneck upstream. Agents spend more of the fixed budget interpreting the target and choosing a proxy—and less on active training and evaluation. The result is more operationalization, not evidence of a better objective: an agent can execute an update without knowing whether it is optimizing the intended capability.</p>
-            <div class="limit"><strong>Evidence boundary.</strong> These are descriptive differences across 48 matched Opus 4.8 run pairs, not an isolated prompt-only causal effect; other run metadata may differ. Behavioral densities are normalized per 10,000 trace characters and show where attention shifts, not which choice causes the final score gap.</div>
+            <h3>A vague goal changes the search before it improves the model.</h3>
+            <p>With a fixed budget, agents spend more time interpreting the goal and choosing a proxy, and less time training and evaluating. That is more target operationalization, not evidence of a better target. An agent can complete an update without improving the intended capability.</p>
+            <div class="limit"><strong>Evidence boundary.</strong> This is a descriptive comparison of 48 matched Opus 4.8 run pairs, not an isolated prompt-only effect. Other run metadata may differ. Trace densities are normalized per 10,000 characters; they show where effort moves, not what caused the final score gap.</div>
           </div>
           <div class="mini-grid">
             <figure class="mini-figure">
-              <h4>More deliberation, less active GPU work</h4><span class="mini-sub">Vague-goal − explicit-task · minutes per matched pair</span>
+              <h4>More decision time, less active GPU work</h4><span class="mini-sub">Vague-goal − explicit-task · minutes per matched pair</span>
               <svg viewBox="0 0 340 190" role="img" aria-label="In 48 matched Opus 4.8 run pairs, vague-goal prompting adds 35 minutes of decision-model thinking and 37 minutes of GPU-idle time, while active training and evaluation decrease by 76 minutes.">
                 <path class="chart-grid" d="M145 10V148M197.5 10V148M302.5 10V148"/>
                 <path d="M250 10V148" fill="none" stroke="#30312f" stroke-width="1.3" opacity=".7"/>
@@ -1372,7 +1476,7 @@
               </svg>
             </figure>
             <figure class="mini-figure">
-              <h4>Vague goals intensify target operationalization</h4><span class="mini-sub">Trace-density ratio vs explicit-task · per 10,000 characters</span>
+              <h4>Vague goals increase target-interpretation activity</h4><span class="mini-sub">Trace-density ratio vs explicit-task · per 10,000 characters</span>
               <svg viewBox="0 0 340 190" role="img" aria-label="Relative to matched explicit-task runs, vague-goal prompting increases the trace density of reading task definitions by 2.98 times, inspecting evaluation scripts by 2.39 times, and LoRA or PEFT activity by 3.09 times. LoRA appears in 89.8 percent of vague-goal runs versus 24.1 percent of matched explicit-task runs.">
                 <path class="chart-grid" d="M195 12V126M245 12V126M295 12V126"/>
                 <g class="chart-label">
@@ -1398,9 +1502,9 @@
         <div class="study-analysis study-analysis-wide" style="--study-accent:#486a8a">
           <div class="study-copy">
             <span class="analysis-num">02 / EXPERIENCE INTEGRATION</span><span class="analysis-paper">S³Gym</span>
-            <h3>Experience helps only when the update pathway preserves useful behavior.</h3>
-            <p>No experience representation wins universally—and which one wins depends on how the score is normalized. Under baseline-normalized NABA, Summary Memory leads in Nullify, Tetris, and Trust; History ICL leads in Minesweeper, Snake, and PvZ; Chess splits 3–3–1. Under the raw AUC+ shown in the panel above, the same runs place the tie on Tetris instead of Chess. That a single normalization choice reorders the result is itself the finding: at this effect size, no pathway is separated cleanly enough to promote. Parameter updates are less predictable still: Trust improves across most checkpoints, while PvZ drops from 23 to 6 and stays there. Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018).</p>
-            <div class="limit"><strong>Evidence boundary.</strong> The left chart uses NABA = AUC+ / max(y₀, ε) across 49 matched model–game pairs, with ε set by the game’s first non-zero score scale when y₀ = 0; the leaderboard uses raw AUC+, so its win counts can differ. Parameter-training results come from a separate 20-checkpoint Qwen3-8B study and are not matched against the context-level methods; persistent degradation is observed, but its cause is not identified.</div>
+            <h3>No experience pathway wins across environments.</h3>
+            <p>The ranking changes with the metric. Under baseline-normalized NABA, Summary Memory leads in Nullify, Tetris, and Trust. History ICL leads in Minesweeper, Snake, and PvZ. Chess splits 3–3–1. With raw AUC+, the tie moves from Chess to Tetris. The evidence does not support one default pathway. Parameter updates are also unstable: Trust improves across most checkpoints, while PvZ falls from 23 to 6 and stays there. Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018).</p>
+            <div class="limit"><strong>Evidence boundary.</strong> The NABA chart covers 49 matched model–game pairs and uses NABA = AUC+ / max(y₀, ε). When y₀ = 0, ε uses the game’s first non-zero score scale. The leaderboard uses raw AUC+, so its win counts can differ. Parameter training is a separate 20-checkpoint Qwen3-8B study and is not matched to the context methods. We observe persistent degradation in PvZ; the cause is unknown.</div>
           </div>
           <div class="mini-grid">
             <figure class="mini-figure">
@@ -1422,7 +1526,7 @@
               </svg>
             </figure>
             <figure class="mini-figure">
-              <h4>The same training pathway produces opposite trajectories</h4><span class="mini-sub">Qwen3-8B · strict-mode score across 20 checkpoints</span>
+              <h4>The same parameter update can produce opposite results</h4><span class="mini-sub">Qwen3-8B · strict-mode score across 20 checkpoints</span>
               <svg viewBox="0 0 340 190" role="img" aria-label="Two aligned line charts show Qwen3-8B parameter-training trajectories. Trust Evolution starts at zero, rises as high as 30, and beats its baseline at 18 of 19 updated checkpoints. Plants versus Zombies starts at 23, falls to 6 at the first update, and remains at 6 for all 19 updated checkpoints.">
                 <rect x="12" y="7" width="316" height="76" rx="3" fill="#edf2f5"/>
                 <rect x="12" y="91" width="316" height="76" rx="3" fill="#f3ece9"/>
@@ -1454,13 +1558,13 @@
         <div class="study-analysis study-analysis-wide" style="--study-accent:#9b4c36">
           <div class="study-copy">
             <span class="analysis-num">03 / SYSTEM INTEGRATION</span><span class="analysis-paper">HarnessDev</span>
-            <h3>Editing a harness is easier than integrating a working mechanism.</h3>
-            <p>All 18 Code harnesses can execute tasks, but state rarely becomes an operating mechanism. Of 108 component instances, 18 were never observed in formal runs—and all 18 were state or memory. Eleven artifacts define a State class, yet only one exposes state saving, only one implements periodic checkpointing, and no checkpoint event occurs across 26,679 task trajectories. In a separate evolution study, agents again modify execution and tools far more often than state.</p>
-            <div class="limit"><strong>Evidence boundary.</strong> Creation evidence covers 18 Code artifacts; observed triggering establishes execution, not causal benefit. Evolution categories overlap and describe 64 official switches across nine single trajectories. Post-freeze held-out evaluation covers SWE-Pro only.</div>
+            <h3>A runnable harness can still contain dead mechanisms.</h3>
+            <p>All 18 Code harnesses run, but some state and memory mechanisms never appear during formal execution. In the evolution study, agents also edit execution and tools far more often than state management.</p>
+            <div class="limit"><strong>Evidence boundary.</strong> Creation analysis covers 18 Code artifacts. A triggered component is not necessarily useful. Evolution categories overlap and cover 64 version switches from nine single trajectories. Post-freeze held-out evaluation covers SWE-Pro only.</div>
           </div>
           <div class="mini-grid">
             <figure class="mini-figure">
-              <h4>Agents edit execution far more than state or verification</h4><span class="mini-sub">64 official switches · overlapping edit categories</span>
+              <h4>Agents edit execution far more than state management or verification</h4><span class="mini-sub">64 official switches · overlapping edit categories</span>
               <svg viewBox="0 0 340 190" role="img" aria-label="Across 64 official version switches, 58 alter execution or control flow, 37 alter tools, 17 alter lifecycle recovery, 16 alter context, four alter state, and none modifies a standalone verifier. Categories overlap.">
                 <g class="chart-label">
                   <text x="116" y="20" text-anchor="end">Execution / control</text>
@@ -1486,8 +1590,8 @@
               </svg>
             </figure>
             <figure class="mini-figure">
-              <h4>State appears in code—but disappears at runtime</h4><span class="mini-sub">Artifact design → observed execution</span>
-              <svg viewBox="0 0 340 190" role="img" aria-label="Among 18 Code harness artifacts, 11 define a State class, one exposes a state-saving interface, and one implements periodic checkpointing. Across 26,679 recorded task trajectories, zero checkpoint events are observed. Separately, 18 of 108 component instances are never observed, and all of them belong to state or memory.">
+              <h4>State mechanisms in code and at runtime</h4><span class="mini-sub">Declared in code → observed at runtime</span>
+              <svg viewBox="0 0 340 190" role="img" aria-label="Comparison of state mechanisms declared in 18 Code harness artifacts and their observed runtime activity.">
                 <rect x="12" y="7" width="316" height="108" rx="3" fill="#f3ece9"/>
                 <text x="20" y="23" fill="#9b4c36" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="8" font-weight="700">ARTIFACT DESIGN · 18 CODE HARNESSES</text>
                 <g class="chart-label">
@@ -1509,62 +1613,83 @@
           </div>
         </div>
 
-        <div class="takeaway-band"><p>Training is not improvement, remembering is not learning, and editing the system is not improving it. What separates each pair is a check the agent cannot pass on its own: an evaluation it did not choose, a decision it has not yet made, and a runtime it does not control.</p></div>
       </div>
     </section>
 
-    <div class="shell article-wrap">
+    <div class="shell article-wrap article-wrap-before-fde">
       <article>
         <section id="synthesis">
-          <h2>What deserves to compound?</h2>
-          <p class="lead">Our results do not say that self-development fails. They say that the checks most agents apply to themselves are too weak to tell a real gain from a local one. Three checks did the separating work in every study, and each one is something the agent cannot supply for itself.</p>
+          <h2>Which changes should persist?</h2>
+          <p class="lead">Each study adds one check outside the update process that produced the change. Together, they define three tests for reusable improvement.</p>
           <div class="observation-grid">
             <div class="observation">
               <div class="big-num">01</div>
-              <div><h3>Anchor the target to an evaluation the agent cannot see.</h3><p>Given a vague goal, agents reliably produce something: 21 of 30 cells reached an eligible checkpoint. Only one produced a retained gain under the protocol. Vague goals also change how effort is spent: decision time rises while active training and evaluation fall, even as LoRA use jumps from 24.1% to 89.8%. That is evidence of a different search process, not yet a better target. Treat any gain measured on a target the agent chose as unproven.</p></div>
+              <div><h3>Test the target on an evaluation the agent cannot see.</h3><p>Twenty-one of 30 Aspire cells produced an eligible checkpoint; only one retained a gain. With vague goals, decision time rises, active training and evaluation fall, and LoRA use increases from 24.1% to 89.8%. The search changed. The target was not yet validated.</p></div>
             </div>
             <div class="observation">
               <div class="big-num">02</div>
-              <div><h3>Validate a lesson on the next decision, not on the agent’s own verdict.</h3><p>Self-judgment carries almost no signal about the next gain (ρ = −0.010 and −0.018), and no experience representation wins across environments—a single change of normalization is enough to reorder which one leads. So there is no default to ship: the pathway has to be selected per environment and confirmed on held-out decisions, not on the trace that produced it.</p></div>
+              <div><h3>Test the lesson on the next decision.</h3><p>Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018). No experience representation wins across environments, and changing the normalization reorders the leader. Choose the pathway per environment and confirm it on held-out decisions.</p></div>
             </div>
             <div class="observation">
               <div class="big-num">03</div>
-              <div><h3>Require a frozen held-out and an executor swap before a change persists.</h3><p>Visible feedback and held-out scores agree in only 34 of 64 version switches, and 2 of 9 declared final versions are held-out optimal—roughly what a coin flip would give. Swapping in a fixed Gemini executor turns three of four lineages negative. And a mechanism that never fires is not a mechanism: 26,679 trajectories produced zero checkpoint events. Persistence therefore needs integration, versioning, and rollback—not another edit.</p></div>
+              <div><h3>Test the harness after freezing it and changing the executor.</h3><p>Visible and held-out scores agree on 34 of 64 switches. Only 2 of 9 declared final versions are held-out optimal. Under a fixed Gemini executor, three of four lineages regress. Keep changes only with versioning and rollback.</p></div>
             </div>
           </div>
-          <div class="thesis"><p>A change deserves to compound when all three hold at once: it was aimed at a target the agent could not game, it improved the next decision rather than the current trace, and it survived a runtime the agent did not control. Almost nothing we measured cleared all three. Closing that gap—not expanding the capacity for self-modification—is the work.</p></div>
         </section>
+      </article>
+    </div>
+
+    <section class="last-mile-section" id="last-mile" aria-labelledby="last-mile-title">
+      <div class="shell">
+        <div class="last-mile-head">
+          <div class="last-mile-copy">
+            <div class="section-label">An analogy: forward-deployed engineering</div>
+            <h2 id="last-mile-title">FDEs turn local work into reusable capability.</h2>
+            <p>Field work faces the same three tests: choose the right problem, learn from evidence, and keep only what the next project can reuse.</p>
+          </div>
+          <div class="fde-panel">
+            <div class="fde-loop" aria-label="The forward-deployed learning loop">
+              <div class="fde-step"><span class="step-index">01</span><div><small>Platform</small><strong>Start with a general platform</strong></div></div>
+              <div class="fde-step"><span class="step-index">02</span><div><small>Discover</small><strong>Find the real customer problem</strong></div></div>
+              <div class="fde-step"><span class="step-index">03</span><div><small>Deliver</small><strong>Build a working solution</strong></div></div>
+              <div class="fde-step"><span class="step-index">04</span><div><small>Learn</small><strong>Extract the reusable pattern</strong></div></div>
+              <div class="fde-step"><span class="step-index">05</span><div><small>Compound</small><strong>Integrate the validated capability</strong></div></div>
+            </div>
+            <p class="fde-loop-note"><span aria-hidden="true">↺</span>The final test is reuse: the next project must be able to use the result.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="shell article-wrap article-wrap-after-fde">
+      <article>
 
         <section id="deployment">
-          <h2>Deployment is where self-improvement becomes useful.</h2>
-          <p>Abstract self-improvement asks whether an AI system can make another AI system stronger. Deployment-grounded improvement asks a more consequential question: can an agent become more useful to the organization it serves, using evidence from real work—and can that learning improve the next deployment rather than remain a one-off fix?</p>
-          <p>The target is not simply a higher public benchmark score. It is a better fit to the organization's changing goals, workflows, data, and quality standards—without turning every local workaround into permanent complexity.</p>
-          <div class="thesis"><p>The goal is not an agent that changes constantly. It is an agent that knows which changes should compound.</p></div>
+          <h2>What these results mean in practice</h2>
+          <p>A useful self-evolving agent must become better at real work, not just score higher on public benchmarks.</p>
+          <p>It must adapt to the organization’s goals, workflows, data, and quality standards without turning every local workaround into permanent complexity.</p>
+          <div class="thesis"><p>The goal is not constant change. It is knowing which changes to keep.</p></div>
         </section>
 
         <section id="goal">
           <h2>Our research goal</h2>
-          <p class="lead">We want to study agents that can grow into a role, not only complete a task.</p>
-          <p>That does not mean replacing an FDE end to end. It means giving an agent a role-level objective and asking whether it can discover what the organization means by good work, build tests and learning signals from imperfect feedback, and reorganize models, memory, and harness as evidence accumulates. In that sense, the long-term goal is FDE-like: not merely solving local problems, but turning repeated field work into compounding organizational capability.</p>
-          <div class="goal-box">
-            <p>Give the agent a platform, a role, and a customer environment. Each deployment should solve something useful now, create evidence about what mattered, and leave the agent—and the platform—better prepared for what comes next.</p>
-          </div>
-
+          <p class="lead">We study agents that grow into a role, not just complete a task.</p>
+          <p>We give an agent a role-level objective and ask whether it can infer what good work means in that organization, build tests from imperfect feedback, and update its model, memory, and harness as evidence accumulates. The aim is not to replace an FDE end to end. It is to turn repeated field work into reusable capability.</p>
           <div class="program-block">
-            <h3>What this program leaves behind</h3>
-            <p class="program-intro">A negative result matters when the apparatus outlives it. Each study leaves a reusable test of self-improvement: Aspire pairs sealed evaluation with auditable trajectories; S³Gym separates permissive exploration from strict held-out evaluation and grounds self-judgment in executable verifiers; HarnessDev freezes runnable artifacts, then tests post-freeze held-out generalization and transfer across executors.</p>
+            <h3>What the benchmarks provide</h3>
+            <p class="program-intro">Each benchmark also provides a reusable test. Aspire pairs hidden evaluation with auditable trajectories. S³Gym separates exploration from strict held-out evaluation and checks self-judgment with executable verifiers. HarnessDev freezes runnable artifacts, then tests held-out generalization and executor transfer.</p>
             <div class="program">
               <div class="paper-row">
                 <div class="paper-name">Aspire</div>
-                <p>A benchmark for vague-goal-driven self-evolution: six capability goals, a sealed expert-authored evaluation of 520 items, and a minimal interactive environment supporting both weight and harness updates, plus 48 matched vague-goal/explicit-task run pairs and auditable trajectories.</p>
+                <p>Aspire asks whether an agent can choose what to learn from a vague goal. It includes six capability goals, a sealed 520-item expert evaluation, and a minimal interactive environment for weight and harness updates. It also provides 48 matched vague-goal/explicit-task run pairs with auditable trajectories.</p>
               </div>
               <div class="paper-row">
                 <div class="paper-name">S³Gym</div>
-                <p>An interactive benchmark that decomposes experience-driven self-improvement into Self-Testing, Self-Judging, and Self-Improvement across seven verifier-backed games. It compares raw-history ICL, summary memory, and parameter training, with seven complete context-level models and a separate 20-checkpoint Qwen3-8B training study.</p>
+                <p>S³Gym asks whether an agent can turn experience into better future decisions. It separates Self-Testing, Self-Judging, and Self-Improvement across seven verifier-backed games. It compares raw-history ICL, summary memory, and parameter training, with seven complete context-level models and a separate 20-checkpoint Qwen3-8B training study.</p>
               </div>
               <div class="paper-row">
                 <div class="paper-name">HarnessDev</div>
-                <p>A two-stage benchmark for creating and evolving runnable agent harnesses. Creation covers six creator LLMs, four domains, five downstream benchmarks, and 2,207 unique instances, including 18 Code artifacts and 26,679 recorded task trajectories; Evolution records 73 official versions across nine trajectories, with a post-freeze SWE-Pro-630 held-out split and fixed-executor ablations.</p>
+                <p>HarnessDev evaluates whether a model can build a runnable agent harness and evolve it through downstream execution feedback. It evaluates the harness itself on held-out tasks, rather than looking only at task outputs.</p>
               </div>
             </div>
           </div>
@@ -1582,10 +1707,10 @@
   <script>
     (() => {
       const ZH = {
-        "Self-Developing Agents": "自我发展型智能体",
+        "Self-Developing Agents": "Self-Developing Agents",
         "Explore": "目录",
-        "What compounds": "什么该留下",
-        "Deployment": "部署",
+        "What to keep": "保留什么",
+        "Implications": "实际含义",
         "Research goal": "研究目标",
         "Papers": "论文",
         "Target formation · the vague-target study": "目标怎么立起来 · 模糊目标研究",
@@ -1593,50 +1718,46 @@
         "System integration": "系统怎么改下去",
         "View paper": "阅读论文",
 
-        "Outcome value": "对客户的价值",
-        "Are deployments solving increasingly important problems for the customer?": "一次次部署之后，我们解决的问题是否真的更重要了？",
-        "Product leverage": "对产品的积累",
-        "Does the core system make each new deployment faster, easier, and more reusable?": "前一次的经验，是否让下一次部署更快、更省力，也更容易复用？",
         "Platform": "平台",
-        "Start with general-purpose capability": "先有一套通用能力",
+        "Start with a general platform": "从通用平台出发",
         "Discover": "发现",
-        "Find the problem the customer actually needs solved": "找到客户真正要解决的问题",
+        "Find the real customer problem": "找到客户真正要解决的问题",
         "Deliver": "交付",
-        "Build a working solution in the field": "在现场做出能跑的方案",
+        "Build a working solution": "做出可运行的方案",
         "Learn": "学习",
-        "Extract the recurring pattern from local experience": "从这一次里抽出下次还能用的规律",
+        "Extract the reusable pattern": "提炼可复用的规律",
         "Compound": "沉淀",
-        "Fold validated capability back into the system": "把真正有效的做法变成平台能力",
+        "Integrate the validated capability": "把验证过的能力写回系统",
 
         "01 / TARGET": "01 / 目标",
-        "Choose what to learn": "决定学什么",
-        "Operationalize a broad capability goal into sub-goals, data, supervision, and an update strategy—without seeing the final hidden evaluation.": "最终评测对智能体不可见。它必须先把一句宽泛的能力目标，拆成可执行的子目标，再自己决定用什么数据、监督信号和更新方法。",
-        "Is this the right target to optimize?": "它优化的，真是我们在意的目标吗？",
+        "Choose what to improve": "选择改进目标",
+        "Aspire gives the agent a broad goal such as “improve mathematical reasoning,” without revealing the downstream task or final evaluation. The agent must decide what to learn and how.": "Aspire 只给 Agent 一个宽泛目标，例如“提升数学能力”，不提供下游任务，也不公开最终评测。Agent 必须自己决定学什么、怎么学。",
+        "Does the agent-built objective transfer to the hidden evaluation?": "Agent 自定的目标能迁移到隐藏评测吗？",
         "02 / EXPERIENCE": "02 / 经验",
-        "Test behavior, judge outcomes, and turn raw trajectories into history, compressed memory, or parameter updates that alter future decisions.": "先看它怎么做、结果好不好，再决定这段经历该原样保留、压缩成记忆，还是写进模型参数。关键是，它能不能改变下一次决策。",
-        "Does this experience improve future decisions?": "这次经历，真的让下一次判断更好吗？",
+        "S³Gym tests whether an agent can generate experience, judge what worked, and turn the result into better future decisions.": "S³Gym 测试 Agent 能否主动获得经历、判断哪些做法有效，并据此改善后续决策。",
+        "Does the experience transfer to held-out conditions?": "这些经验能迁移到留出条件吗？",
         "03 / SYSTEM": "03 / 系统",
-        "Encode lessons in the persistent execution substrate: tools, context, control flow, recovery, state, and verification.": "最后，还要把学到的东西落进长期运行的系统里：工具怎么调用、上下文怎么组织、流程怎么控制、失败如何恢复、状态如何保存、结果如何验证。",
-        "Does this system change generalize?": "换一个任务、换一种运行环境，它还管用吗？",
+        "HarnessDev tests whether a model can build a runnable agent harness, then evolve it using downstream execution feedback.": "HarnessDev 测试模型能否构建可运行的 Agent Harness，并根据下游执行反馈继续改进它。",
+        "Does the harness work on held-out tasks and with another executor?": "这个 Harness 能在留出任务和其他执行器上继续工作吗？",
 
-        "Evolve what experience teaches": "演化经验所教会的内容",
-        "Evolve how the agent works": "演化智能体的工作方式",
-        "Harness evolution · visible feedback + post-freeze held-out evaluation": "Harness 演化 · 可见反馈 + 冻结后的 held-out 评测",
-        "Make improvement persistent in the system": "让改进真正进到系统里",
+        "Learn from experience": "从经验中学习",
+        "Create and evolve the harness": "创建并演化 Harness",
+        "Harness evolution · visible feedback + post-freeze held-out evaluation": "Harness 演化 · 可见反馈 + 冻结后的留出评测",
+        "Do harness improvements transfer?": "Harness 的改进能迁移吗？",
         "53.1% direction agreement": "53.1% 方向一致率",
         "34 of 64 comparable version switches move in the same direction": "64 次可比较的版本切换中，有 34 次方向一致",
-        "How much of the visible gain transfers?": "看得见的提升，有多少能带出去？",
-        "Declared final minus H₀ · five self-runtime creator–executor lineages": "最终版本相对 H₀ 的变化 · 5 组自行创建并执行的模型系列",
+        "Visible gain vs held-out gain": "可见增益与留出增益对比",
+        "Declared final minus H₀ · five self-runtime creator–executor lineages": "最终版本相对 H₀ 的变化 · 创建器与执行器使用同一模型的 5 条谱系",
         "Visible feedback pair": "可见反馈配对",
-        "SWE-Pro held-out 630": "SWE-Pro held-out 630",
-        "Does the improvement survive a runtime change?": "换掉执行器之后，这次改进还站得住吗？",
-        "Held-out-630 gain under a fixed Gemini executor · declared final minus H₀ · the Gemini lineage is omitted because Gemini is the fixed executor": "统一由 Gemini 执行时，held-out 630 上的增益 · 最终版本相对 H₀ 的变化 · Gemini 系列因本身就是固定执行器而不列入",
-        "Visible progress is not a reliable guide to what generalizes.": "看得见的进步，不一定带得出实验室。",
-        "Feedback and held-out scores move in the same direction in only 34 of 64 comparable version switches, and just 2 of 9 declared versions are held-out optimal.": "我们比较了 64 次版本切换。可见反馈和 held-out 得分只有 34 次同涨同跌；9 个被选作最终版本的方案里，真正能在 held-out 上做到最优的只有 2 个。",
-        "Nine single trajectories · 73 official versions · 64 adjacent switches": "九条单轨迹 · 73 个正式版本 · 64 次相邻切换",
+        "SWE-Pro held-out 630": "SWE-Pro-630 留出集",
+        "Held-out gain after an executor swap": "更换执行器后的留出增益",
+        "Held-out-630 gain under a fixed Gemini executor · declared final minus H₀ · the Gemini lineage is omitted because Gemini is the fixed executor": "固定 Gemini 执行器下 SWE-Pro 留出集（630）的增益 · 最终版本相对 H₀ · Gemini 谱系即固定执行器，故省略",
+        "Visible gains often fail to transfer.": "可见增益经常无法迁移。",
+        "Feedback and held-out scores agree on only 34 of 64 comparable version switches. Just 2 of 9 declared final versions are best on the held-out set.": "64 次可比较的版本切换中，可见反馈与留出评测得分只有 34 次方向一致。9 个最终版本中，只有 2 个在留出评测上最优。",
+        "Nine single trajectories · 73 official versions · 64 adjacent switches": "9 条单轨迹 · 73 个正式版本 · 64 次相邻切换",
 
         "History Context vs Summary Memory · seven strict-mode environments": "历史上下文 vs 摘要记忆 · 七个严格模式环境",
-        "No universal memory winner": "没有一种记忆方式能通吃",
+        "No universal memory winner": "没有通用的最佳记忆方式",
         "Raw AUC+: Summary leads in 3 games, History in 3, Tetris split": "原始 AUC+ 口径：摘要记忆在 3 个游戏领先，历史上下文在 3 个游戏领先，俄罗斯方块持平",
         "Explore a game": "选择一个游戏",
         "Chess · Summary wins on 4 models · History wins on 3": "国际象棋 · 摘要记忆在 4 个模型上胜出 · 历史上下文在 3 个模型上胜出",
@@ -1649,56 +1770,56 @@
         "Trust": "信任演化",
         "Trust Evolution": "信任演化",
         "Model-level AUC+ ·": "模型级 AUC+ ·",
-        "Higher means more sustained improvement above the model's initial baseline": "数值越高，说明模型越能持续跑赢自己的初始水平",
+        "Higher means more sustained improvement above the model's initial baseline": "数值越高，表示高于模型初始基线的改进持续得越久",
         "History ICL": "历史 ICL",
         "Summary Memory": "摘要记忆",
-        "Which pathway helps more models?": "哪种记忆方式，对更多模型有帮助？",
+        "Which pathway helps more models?": "哪种路径帮助了更多模型？",
         "Y-axis: models favored (0–7). Click any game point to inspect its model-level result on the left.": "纵轴：受益模型数（0–7）。点击任意游戏点，可在左侧查看模型级结果。",
         "One tie in Nullify/Tetris": "Nullify／俄罗斯方块各有一次平局",
         "Mines": "扫雷",
-        "There is no universally best way to preserve experience.": "同一段经验，究竟该保留原始历史，还是压缩成摘要，要看具体环境。没有一种做法能在所有任务里胜出。",
-        "Select a game to see how the same seven models change under raw history versus compressed memory.": "选择一个游戏，看看同样 7 个模型在“保留原始历史”和“压缩成记忆”两种做法下，表现分别怎么变。",
-        "Both charts use raw model-level AUC+. The case study below re-ranks the same runs under baseline-normalized NABA, which moves the tie from Tetris to Chess.": "上面两张图都按模型原始 AUC+ 统计。下面的案例研究换成经基线归一化的 NABA，对同一批运行重新排序；计分方式一变，出现平局的游戏也从俄罗斯方块变成了国际象棋。",
+        "No memory method wins everywhere.": "没有一种记忆方式在所有环境中都更好。",
+        "Raw history and summary memory trade places across games, and the winner changes with score normalization.": "原始历史和摘要记忆在不同游戏中各有胜负，归一化方式也会改变结果。",
+        "Both charts use raw model-level AUC+. The case study below re-ranks the same runs under baseline-normalized NABA, which moves the tie from Tetris to Chess.": "两图使用原始模型级 AUC+。下方分析以基线归一化 NABA 对同一批运行重新排序，平局由俄罗斯方块变为国际象棋。",
 
         "Aspire · five decision-agent configurations × six capability goals": "Aspire · 五种决策智能体配置 × 六个能力目标",
         "1 retained gain / 30 cells": "30 个单元中仅 1 个增益被保留",
         "Only one cell produced a gain that cleared the retention threshold": "只有一个单元产生的增益越过了保留门槛",
-        "Almost every run produced a checkpoint. Almost none produced a better model.": "几乎每次运行都交出了检查点。几乎没有交出更好的模型。",
-        "Each run starts from a broad capability goal; later stages apply completion and baseline checks": "每次实验只给一个宽泛的能力目标；模型完成更新后，再接受完成度和基线两轮检查",
+        "Most runs produced a checkpoint. Only one retained a gain.": "大多数运行都产出了检查点，最终只有 1 个增益被保留。",
+        "Each run starts from a broad capability goal; later stages apply completion and baseline checks": "每次实验从宽泛能力目标出发；更新完成后，再做完成度和基线检查",
         "2 beat base": "2 个超过基线",
         "1 cleared + retained": "1 个越过门槛并被保留",
         "All": "全部",
         "cells": "单元",
         "Evaluated": "已评估",
-        "checkpoint": "检查点",
-        "Eligible": "符合条件",
+        "checkpoint": "模型检查点",
+        "Eligible": "进入后续筛选",
         "Retained": "保留",
         "improvement": "改进",
-        "Three improving checkpoints—all worse than the base": "三个持续上升的检查点——但都不如基线",
+        "The checkpoints improve, but all remain below the base model": "检查点得分在提高，但始终低于基线模型",
         "Qwen3.5-4B Self · hidden-evaluation mathematics score by checkpoint": "Qwen3.5-4B Self · 各检查点的隐藏数学评估得分",
-        "Self-trained checkpoints": "自训练检查点",
+        "Self-trained checkpoints": "自训练模型检查点",
         "Unevolved baseline": "未演化基线",
         "Unevolved base 17.86": "未演化基线 17.86",
         "Best CK: −15.48 vs base": "最佳检查点：较基线低 15.48",
-        "Local gain, global regression": "局部在涨，全局在退",
-        "Agents can optimize a trajectory without improving the capability.": "智能体很会把眼前这条训练轨迹做漂亮，但这不代表它真正学会了什么。",
-        "Across 30 configuration–goal cells, 28 produced an evaluated checkpoint. Two found a checkpoint above the base score, but only one cleared the retention threshold and survived rollback.": "30 组“配置 × 目标”实验里，28 组产出了可评估的检查点。只有 2 个检查点跑赢原始模型，最终仅 1 个跨过保留门槛，没有被回滚。",
+        "Local gain, global regression": "局部提高，整体仍退化",
+        "Running the update loop is not the same as improving the target capability.": "完成更新流程，不代表目标能力提高。",
+        "Of 30 configuration–goal cells, 28 produced an evaluated checkpoint. Two beat the base model; only one cleared the retention threshold and was kept.": "30 个“配置 × 目标”单元中，28 个产出了可评测检查点，2 个超过基线模型，最终只有 1 个越过保留门槛并被保留。",
         "Adaptive-feedback protocol · hidden evaluation set": "自适应反馈协议 · 隐藏评估集",
         "Hover, click, or use ← → to move between studies.": "悬停、点击或使用 ← → 在研究之间切换。",
 
-        "Experimental evidence · what actually changes?": "实验证据 · 真正改了什么？",
-        "The hard part is not producing change. It is deciding what should carry forward.": "难的不是制造变化，而是决定哪些变化该带到下一步。",
+        "Why the gains fail": "改动为何失效",
+        "Three gaps break the loop.": "三个缺口让闭环失效。",
         "01 / TARGET FORMATION": "01 / 目标形成",
-        "A vague goal changes the search before it changes the model.": "目标一模糊，先被改掉的其实是搜索过程，模型往往还没动。",
-        "Vague goals move the bottleneck upstream. Agents spend more of the fixed budget interpreting the target and choosing a proxy—and less on active training and evaluation. The result is more operationalization, not evidence of a better objective: an agent can execute an update without knowing whether it is optimizing the intended capability.": "当目标只有一句宽泛描述，瓶颈会提前出现。智能体不得不先猜“究竟要优化什么”，再挑一个可以下手的代理指标。预算是固定的：花在解释目标上的时间多了，真正用于训练和评估的时间就少了。于是，我们看到的是更完整的目标拆解，却不是更可靠的优化目标。智能体可以顺利完成一次更新，仍然不知道自己练到的，是不是我们真正想要的能力。",
-        "Evidence boundary.": "这组证据能说明什么",
-        "These are descriptive differences across 48 matched Opus 4.8 run pairs, not an isolated prompt-only causal effect; other run metadata may differ. Behavioral densities are normalized per 10,000 trace characters and show where attention shifts, not which choice causes the final score gap.": "这里比较的是 48 对匹配的 Opus 4.8 运行，呈现的是两类运行之间的描述性差异，不能单独归因为提示词；其他运行元数据仍可能不同。行为密度按每 10,000 个轨迹字符归一化，它告诉我们注意力移向了哪里，但不能证明某个具体选择造成了最终分差。",
-        "More deliberation, less active GPU work": "想得更多，GPU 真正干活更少",
+        "A vague goal changes the search before it improves the model.": "模糊目标先改变搜索过程，但未必提高模型能力。",
+        "With a fixed budget, agents spend more time interpreting the goal and choosing a proxy, and less time training and evaluating. That is more target operationalization, not evidence of a better target. An agent can complete an update without improving the intended capability.": "预算固定时，Agent 把更多时间用于解释目标和选择代理指标，留给训练与评测的时间更少。这说明目标拆解活动增加，不能说明目标选对了。完成更新，也不代表目标能力提高。",
+        "Evidence boundary.": "证据边界。",
+        "This is a descriptive comparison of 48 matched Opus 4.8 run pairs, not an isolated prompt-only effect. Other run metadata may differ. Trace densities are normalized per 10,000 characters; they show where effort moves, not what caused the final score gap.": "这是 48 对 Opus 4.8 匹配运行的描述性比较，不是只改变提示词的因果实验。其他运行元数据可能不同。轨迹密度按每 10,000 个字符归一化；它只显示精力转移到哪里，不能解释最终分差的原因。",
+        "More decision time, less active GPU work": "决策时间增加，主动 GPU 训练减少",
         "Vague-goal − explicit-task · minutes per matched pair": "模糊目标 − 明确任务 · 每对匹配运行的分钟差",
         "Decision thinking": "决策思考",
         "GPU idle": "GPU 空闲",
         "Active training / eval": "主动训练／评估",
-        "Vague goals intensify target operationalization": "模糊目标会把力气推向“把目标拆清楚”",
+        "Vague goals increase target-interpretation activity": "模糊目标增加了目标解释活动",
         "Trace-density ratio vs explicit-task · per 10,000 characters": "相对明确任务的轨迹密度比 · 每 10,000 字符",
         "Read task definitions": "读取任务定义",
         "Inspect eval scripts": "检查评估脚本",
@@ -1706,24 +1827,24 @@
         "LoRA use: 24.1% → 89.8%": "LoRA 使用率：24.1% → 89.8%",
 
         "02 / EXPERIENCE INTEGRATION": "02 / 经验整合",
-        "Experience helps only when the update pathway preserves useful behavior.": "经验要真的帮上忙，前提是更新的那条路径没有把原来有用的行为弄丢。",
-        "No experience representation wins universally—and which one wins depends on how the score is normalized. Under baseline-normalized NABA, Summary Memory leads in Nullify, Tetris, and Trust; History ICL leads in Minesweeper, Snake, and PvZ; Chess splits 3–3–1. Under the raw AUC+ shown in the panel above, the same runs place the tie on Tetris instead of Chess. That a single normalization choice reorders the result is itself the finding: at this effect size, no pathway is separated cleanly enough to promote. Parameter updates are less predictable still: Trust improves across most checkpoints, while PvZ drops from 23 to 6 and stays there. Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018).": "经验该怎么留下，并没有一种方案能通吃所有环境；更麻烦的是，领先者还会随着计分方式改变。按经基线归一化的 NABA 计算，摘要记忆在 Nullify、俄罗斯方块和信任演化中领先，历史 ICL 在扫雷、贪吃蛇和植物大战僵尸中领先，国际象棋则是 3–3–1。换成上方面板使用的原始 AUC+，同一批结果里，平局从国际象棋挪到了俄罗斯方块。仅仅改变归一化方式就能重排名次，这恰恰说明：在目前的效应量下，没有哪条经验路径稳定到可以直接推广。写入参数的结果更难预测——信任演化在大多数检查点上变好，植物大战僵尸却从 23 分跌到 6 分后再也没有恢复。至于智能体对自己的评价，几乎无法预测下一次是否会进步（ρ = −0.010 和 −0.018）。",
-        "The left chart uses NABA = AUC+ / max(y₀, ε) across 49 matched model–game pairs, with ε set by the game’s first non-zero score scale when y₀ = 0; the leaderboard uses raw AUC+, so its win counts can differ. Parameter-training results come from a separate 20-checkpoint Qwen3-8B study and are not matched against the context-level methods; persistent degradation is observed, but its cause is not identified.": "左图统计 49 对匹配的“模型 × 游戏”，使用 NABA = AUC+ / max(y₀, ε)。如果 y₀ = 0，ε 取该游戏第一次出现非零得分时的量级。排行榜用的是原始 AUC+，所以两处的胜负次数可能不同。参数训练来自另一项独立的 Qwen3-8B 实验，完整记录了 20 个检查点，不能和上下文层面的两种方法做严格配对比较；我们只确认了退化持续存在，原因还不能下结论。",
-        "Which memory pathway wins more model comparisons?": "哪种记忆路径赢得更多模型比较？",
-        "Model-level ΔNABA wins · seven paired models per game": "模型级 ΔNABA 胜出次数 · 每个游戏七个配对模型",
+        "No experience pathway wins across environments.": "没有一种经验路径能在所有环境中领先。",
+        "The ranking changes with the metric. Under baseline-normalized NABA, Summary Memory leads in Nullify, Tetris, and Trust. History ICL leads in Minesweeper, Snake, and PvZ. Chess splits 3–3–1. With raw AUC+, the tie moves from Chess to Tetris. The evidence does not support one default pathway. Parameter updates are also unstable: Trust improves across most checkpoints, while PvZ falls from 23 to 6 and stays there. Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018).": "排名会随指标改变。使用基线归一化 NABA 时，摘要记忆领先 Nullify、俄罗斯方块和信任演化；历史 ICL 领先扫雷、贪吃蛇和植物大战僵尸；国际象棋为 3–3–1。改用原始 AUC+ 后，平局从国际象棋移到俄罗斯方块。现有证据不支持固定选择一种路径。参数更新也不稳定：信任演化在多数检查点提高，植物大战僵尸从 23 降至 6 后不再恢复。自我判断几乎不能预测下一次增益（ρ = −0.010、−0.018）。",
+        "The NABA chart covers 49 matched model–game pairs and uses NABA = AUC+ / max(y₀, ε). When y₀ = 0, ε uses the game’s first non-zero score scale. The leaderboard uses raw AUC+, so its win counts can differ. Parameter training is a separate 20-checkpoint Qwen3-8B study and is not matched to the context methods. We observe persistent degradation in PvZ; the cause is unknown.": "NABA 图覆盖 49 对“模型 × 游戏”，使用 NABA = AUC+ / max(y₀, ε)。当 y₀ = 0 时，ε 取该游戏首个非零得分的量级。排行榜使用原始 AUC+，所以胜负次数可能不同。参数训练来自另一项 Qwen3-8B 20 检查点实验，不能与上下文方法严格配对。PvZ 出现持续退化，但原因未知。",
+        "Which memory pathway wins more model comparisons?": "哪种记忆路径在更多模型上领先？",
+        "Model-level ΔNABA wins · seven paired models per game": "模型级 ΔNABA 胜出次数 · 每个游戏 7 个配对模型",
         "Summary": "摘要记忆",
         "History": "历史上下文",
         "Tie": "平局",
-        "The same training pathway produces opposite trajectories": "同一条训练路径产生了相反的轨迹",
+        "The same parameter update can produce opposite results": "同一种参数更新，结果可能相反",
         "Qwen3-8B · strict-mode score across 20 checkpoints": "Qwen3-8B · 20 个检查点的严格模式得分",
         "18 / 19 above baseline · max 30": "19 次更新中 18 次高于基线 · 最高 30",
         "19 / 19 updates remain at 6": "19 次更新全部停留在 6",
 
         "03 / SYSTEM INTEGRATION": "03 / 系统整合",
-        "Editing a harness is easier than integrating a working mechanism.": "改 harness 容易，把一个真正会运转的机制接进去难得多。",
-        "All 18 Code harnesses can execute tasks, but state rarely becomes an operating mechanism. Of 108 component instances, 18 were never observed in formal runs—and all 18 were state or memory. Eleven artifacts define a State class, yet only one exposes state saving, only one implements periodic checkpointing, and no checkpoint event occurs across 26,679 task trajectories. In a separate evolution study, agents again modify execution and tools far more often than state.": "18 个代码框架都能把任务跑起来，但“状态”大多只停留在代码里，没有成为真正的运行机制。108 个组件实例中，有 18 个从未在正式运行里出现，而它们无一例外都属于状态或记忆。11 个产物定义了 State 类，真正提供状态保存接口的只有 1 个，实现周期性检查点的也只有 1 个；26,679 条任务轨迹里，检查点事件一次都没有触发。另一项演化实验也出现了同样的偏好：智能体频繁修改执行流程和工具，却很少碰状态。",
-        "Creation evidence covers 18 Code artifacts; observed triggering establishes execution, not causal benefit. Evolution categories overlap and describe 64 official switches across nine single trajectories. Post-freeze held-out evaluation covers SWE-Pro only.": "创建阶段的统计覆盖 18 个代码产物。我们观察到某个机制被触发，只能说明它确实运行过，不能据此证明它带来了收益。演化阶段的编辑类别允许重叠，数据来自 9 条单独轨迹中的 64 次正式版本切换；冻结后的 held-out 评测只覆盖 SWE-Pro。",
-        "Agents edit execution far more than state or verification": "智能体修改执行的次数远多于状态或验证",
+        "A runnable harness can still contain dead mechanisms.": "Harness 可以运行，其中一些机制却可能从未运行。",
+        "All 18 Code harnesses run, but some state and memory mechanisms never appear during formal execution. In the evolution study, agents also edit execution and tools far more often than state management.": "18 个 Code Harness 都能运行，但部分状态和记忆机制从未在正式运行中出现。Evolution 实验中，Agent 也更常修改执行流程和工具，很少修改状态管理。",
+        "Creation analysis covers 18 Code artifacts. A triggered component is not necessarily useful. Evolution categories overlap and cover 64 version switches from nine single trajectories. Post-freeze held-out evaluation covers SWE-Pro only.": "Creation 分析覆盖 18 个 Code 产物。组件被触发，只能说明它运行过，不能说明它有效。Evolution 的编辑类别可以重叠，覆盖 9 条单轨迹中的 64 次版本切换。冻结后的留出评测只覆盖 SWE-Pro。",
+        "Agents edit execution far more than state management or verification": "Agent 修改执行流程的次数远多于状态管理或验证",
         "64 official switches · overlapping edit categories": "64 次正式切换 · 编辑类别可重叠",
         "Execution / control": "执行／控制",
         "Tools": "工具",
@@ -1731,76 +1852,71 @@
         "Context": "上下文",
         "State": "状态",
         "Standalone verifier": "独立验证器",
-        "State appears in code—but disappears at runtime": "状态写在代码里，运行时却不见了",
-        "Artifact design → observed execution": "产物设计 → 实际观测到的执行",
-        "ARTIFACT DESIGN · 18 CODE HARNESSES": "产物设计 · 18 个代码 HARNESS",
+        "State mechanisms in code and at runtime": "代码中的状态机制与实际运行",
+        "Declared in code → observed at runtime": "代码声明 → 运行记录",
+        "ARTIFACT DESIGN · 18 CODE HARNESSES": "产物设计 · 18 个 Code Harness",
         "State class defined": "定义了 State 类",
         "State-save interface": "状态保存接口",
-        "Periodic checkpointing": "周期性检查点",
+        "Periodic checkpointing": "周期性状态保存",
         "OBSERVED RUNTIME": "实际观测到的运行时",
         "checkpoint events": "检查点事件",
-        "across 26,679 task trajectories": "覆盖 26,679 条任务轨迹",
+        "across 26,679 task trajectories": "在 26,679 条任务轨迹中",
         "18 / 108 components never observed · all state or memory": "108 个组件中有 18 个从未被观察到 · 全部属于状态或记忆",
-        "Our results do not say that self-development fails. They say that the checks most agents apply to themselves are too weak to tell a real gain from a local one. Three checks did the separating work in every study, and each one is something the agent cannot supply for itself.": "这些结果不是在说“智能体不可能自我成长”。它们指出的是另一个更具体的问题：智能体用来检查自己的尺子太松，分不清真正的能力提升和只在局部成立的漂亮结果。在三项研究里，最后真正拉开差距的都是三道外部检验——而这三道检验，智能体都无法自己给自己出题、自己判定通过。",
-        "Anchor the target to an evaluation the agent cannot see.": "把目标钉在智能体看不见的评测上。",
-        "Given a vague goal, agents reliably produce something: 21 of 30 cells reached an eligible checkpoint. Only one produced a retained gain under the protocol. Vague goals also change how effort is spent: decision time rises while active training and evaluation fall, even as LoRA use jumps from 24.1% to 89.8%. That is evidence of a different search process, not yet a better target. Treat any gain measured on a target the agent chose as unproven.": "只要给出一个模糊目标，智能体通常都能交出点东西：30 组实验中，21 组走到了符合保留条件的检查点，但按完整协议走到最后，真正留下正向提升的只有 1 组。模糊目标还改变了力气花在哪里：决策思考变多，真正用于训练和评测的 GPU 时间反而减少；LoRA 使用率却从 24.1% 跳到 89.8%。这只能说明搜索过程变了，还不能说明目标选对了。只要评测目标也是智能体自己挑的，测出来的提升就还不能算数。",
-        "Validate a lesson on the next decision, not on the agent’s own verdict.": "一段经验有没有学对，要看它能否改善下一次决策，不能听智能体自己说。",
-        "Self-judgment carries almost no signal about the next gain (ρ = −0.010 and −0.018), and no experience representation wins across environments—a single change of normalization is enough to reorder which one leads. So there is no default to ship: the pathway has to be selected per environment and confirmed on held-out decisions, not on the trace that produced it.": "智能体对自己的评价，几乎不包含“下一次会不会变好”的有效信号（ρ = −0.010 和 −0.018）。经验该保留成原始历史、压缩记忆，还是写入参数，也没有跨环境的统一赢家；只换一种归一化方式，领先顺序就会变化。因此，这里不存在一套可以默认上线的答案。每个环境都要单独选择经验路径，并在 held-out 决策上确认效果，不能回头拿产生这段经验的同一条轨迹给自己验收。",
-        "Require a frozen held-out and an executor swap before a change persists.": "一项改动要想长期保留，至少先过两关：冻结的 held-out 评测，以及更换执行器后的复测。",
-        "Visible feedback and held-out scores agree in only 34 of 64 version switches, and 2 of 9 declared final versions are held-out optimal—roughly what a coin flip would give. Swapping in a fixed Gemini executor turns three of four lineages negative. And a mechanism that never fires is not a mechanism: 26,679 trajectories produced zero checkpoint events. Persistence therefore needs integration, versioning, and rollback—not another edit.": "64 次版本切换里，可见反馈和 held-out 得分只有 34 次方向一致；9 个被宣布为最终版本的方案中，能在 held-out 上做到最优的只有 2 个，这样的命中率和抛硬币相差无几。把执行器统一换成 Gemini 后，4 条谱系里有 3 条从正收益变成负收益。还有一些机制虽然写进了代码，却一次也没真正工作：26,679 条轨迹中，检查点事件为 0。可见，让改动留下来靠的不是继续改代码，而是把机制接入运行、做好版本管理，并且随时能够回滚。",
-        "A change deserves to compound when all three hold at once: it was aimed at a target the agent could not game, it improved the next decision rather than the current trace, and it survived a runtime the agent did not control. Almost nothing we measured cleared all three. Closing that gap—not expanding the capacity for self-modification—is the work.": "只有同时满足三件事，一项改动才值得进入下一轮：目标不是智能体可以钻空子的；提升体现在下一次决策，而不是当前这条轨迹；换到智能体无法控制的运行环境里，效果依然成立。我们测到的结果中，几乎没有一个能同时过这三关。接下来真正要补的，是这套验证闭环，而不是让智能体拥有更多自我修改的权限。",
+        "Each study adds one check outside the update process that produced the change. Together, they define three tests for reusable improvement.": "每项研究都使用一项独立于改动过程的检验。合在一起，这三项检验用来判断改动能否复用。",
+        "Test the target on an evaluation the agent cannot see.": "用 Agent 看不到的评测检验目标。",
+        "Twenty-one of 30 Aspire cells produced an eligible checkpoint; only one retained a gain. With vague goals, decision time rises, active training and evaluation fall, and LoRA use increases from 24.1% to 89.8%. The search changed. The target was not yet validated.": "Aspire 的 30 个单元中，21 个产出了进入后续筛选的检查点，最终只有 1 个增益被保留。面对模糊目标，决策时间增加，主动训练与评测时间减少，LoRA 使用率从 24.1% 升至 89.8%。搜索过程变了，但目标仍未得到验证。",
+        "Test the lesson on the next decision.": "用下一次决策检验经验。",
+        "Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018). No experience representation wins across environments, and changing the normalization reorders the leader. Choose the pathway per environment and confirm it on held-out decisions.": "自我判断几乎不能预测下一次增益（ρ = −0.010、−0.018）。没有一种经验表示能在所有环境中领先，改变归一化方式还会重排名次。经验路径应按环境选择，并在留出决策上验证。",
+        "Test the harness after freezing it and changing the executor.": "冻结 Harness，再更换执行器测试。",
+        "Visible and held-out scores agree on 34 of 64 switches. Only 2 of 9 declared final versions are held-out optimal. Under a fixed Gemini executor, three of four lineages regress. Keep changes only with versioning and rollback.": "64 次版本切换中，可见反馈与留出评测得分只有 34 次方向一致。9 个最终版本中，只有 2 个在留出评测上最优。换成固定 Gemini 执行器后，4 条谱系中有 3 条退化。保留改动前，需要版本管理和回滚。",
 
-        "The target is not simply a higher public benchmark score. It is a better fit to the organization's changing goals, workflows, data, and quality standards—without turning every local workaround into permanent complexity.": "我们追求的，不是公开榜单上再多几分，而是让智能体更贴合一家组织不断变化的目标、流程、数据和质量标准；同时，也不能把客户现场每一次临时补丁，都永久背进系统里。",
-        "The goal is not an agent that changes constantly. It is an agent that knows which changes should compound.": "我们要的，不是一个不停改自己的智能体，而是一个知道什么该学、什么不该留下的智能体。",
+        "A useful self-evolving agent must become better at real work, not just score higher on public benchmarks.": "Self-Evolving Agent 不应只在公开 benchmark 上得分更高，还要把真实工作做得更好。",
+        "It must adapt to the organization’s goals, workflows, data, and quality standards without turning every local workaround into permanent complexity.": "它需要适应组织的目标、流程、数据和质量标准，同时避免把每个局部补丁变成永久的系统复杂度。",
+        "The goal is not constant change. It is knowing which changes to keep.": "目标不是不断修改自己，而是知道哪些改动值得保留。",
         "Our research goal": "我们的研究目标",
-        "What this program leaves behind": "这组研究留下了什么",
-        "A negative result matters when the apparatus outlives it. Each study leaves a reusable test of self-improvement: Aspire pairs sealed evaluation with auditable trajectories; S³Gym separates permissive exploration from strict held-out evaluation and grounds self-judgment in executable verifiers; HarnessDev freezes runnable artifacts, then tests post-freeze held-out generalization and transfer across executors.": "实验没有得到正向结果，并不等于白做。只要检验它的方法还能继续被别人使用，这个结果就有价值。三项研究真正留下的，不只是几组结果，而是三套以后还能继续使用的检验方法：Aspire 把隐藏评测和可审计轨迹配在一起；S³Gym 把宽松探索与严格的 held-out 评测分开，并用可执行验证器校验智能体的自我判断；HarnessDev 则把每个 harness 冻结成可运行版本，再检验它能否通过 post-freeze held-out，并迁移到不同执行器。",
-        "A benchmark for vague-goal-driven self-evolution: six capability goals, a sealed expert-authored evaluation of 520 items, and a minimal interactive environment supporting both weight and harness updates, plus 48 matched vague-goal/explicit-task run pairs and auditable trajectories.": "一套研究“智能体能否从模糊目标出发自我演化”的基准：6 个能力目标、520 道专家编写的隐藏评测题，以及同时支持模型权重和 harness 更新的最小交互环境；另外还留下了 48 对“模糊目标／明确任务”的匹配运行和可审计轨迹。",
-        "An interactive benchmark that decomposes experience-driven self-improvement into Self-Testing, Self-Judging, and Self-Improvement across seven verifier-backed games. It compares raw-history ICL, summary memory, and parameter training, with seven complete context-level models and a separate 20-checkpoint Qwen3-8B training study.": "一套把经验驱动的自我改进拆成 Self-Testing、Self-Judging 和 Self-Improvement 的交互式基准，覆盖 7 个带可执行验证器的游戏。它比较原始历史 ICL、摘要记忆和参数训练：上下文层面的实验包含 7 个完整模型，参数训练则是另一项 Qwen3-8B 的 20 检查点研究。",
-        "A two-stage benchmark for creating and evolving runnable agent harnesses. Creation covers six creator LLMs, four domains, five downstream benchmarks, and 2,207 unique instances, including 18 Code artifacts and 26,679 recorded task trajectories; Evolution records 73 official versions across nine trajectories, with a post-freeze SWE-Pro-630 held-out split and fixed-executor ablations.": "一套把可运行 harness 当作评测对象的两阶段基准。Creation 覆盖 6 个 creator LLM、4 个领域、5 个下游基准和 2,207 个独立实例，其中包括 18 个 Code harness 和 26,679 条已记录的任务轨迹；Evolution 则留下了 9 条轨迹中的 73 个正式版本，并加入冻结后的 SWE-Pro-630 held-out split 与固定执行器消融。",
-        "Self-Developing Agents · Research perspective": "自我发展型智能体 · 研究视角",
+        "What the benchmarks provide": "三项 benchmark 提供了什么",
+        "Each benchmark also provides a reusable test. Aspire pairs hidden evaluation with auditable trajectories. S³Gym separates exploration from strict held-out evaluation and checks self-judgment with executable verifiers. HarnessDev freezes runnable artifacts, then tests held-out generalization and executor transfer.": "每项 benchmark 也提供了一套可复用的测试。Aspire 把隐藏评测与可审计轨迹配对。S³Gym 分开探索与严格留出评测，并用可执行验证器检查自我判断。HarnessDev 先冻结可运行产物，再测试留出泛化和执行器迁移。",
+        "Aspire asks whether an agent can choose what to learn from a vague goal. It includes six capability goals, a sealed 520-item expert evaluation, and a minimal interactive environment for weight and harness updates. It also provides 48 matched vague-goal/explicit-task run pairs with auditable trajectories.": "Aspire 测试 Agent 能否从模糊目标中确定学习方向。它包含 6 个能力目标、520 道专家编写的隐藏评测题，以及一个支持权重和 Harness 更新的最小交互环境。它还提供 48 对“模糊目标／明确任务”匹配运行及可审计轨迹。",
+        "S³Gym asks whether an agent can turn experience into better future decisions. It separates Self-Testing, Self-Judging, and Self-Improvement across seven verifier-backed games. It compares raw-history ICL, summary memory, and parameter training, with seven complete context-level models and a separate 20-checkpoint Qwen3-8B training study.": "S³Gym 测试 Agent 能否把经验转成更好的后续决策。它在 7 个带可执行验证器的游戏中分开评测 Self-Testing、Self-Judging 和 Self-Improvement。它比较原始历史 ICL、摘要记忆和参数训练：上下文实验使用 7 个完整模型，另有一项 Qwen3-8B 的 20 检查点训练实验。",
+        "HarnessDev evaluates whether a model can build a runnable agent harness and evolve it through downstream execution feedback. It evaluates the harness itself on held-out tasks, rather than looking only at task outputs.": "HarnessDev 评测模型能否构建可运行的 Agent Harness，并根据下游执行反馈继续改进 Harness。它在留出任务上评测 Harness 本身，而不只看任务输出。",
+        "Self-Developing Agents · Research perspective": "Self-Developing Agents · 研究视角",
 
-        "From forward-deployed work to compounding capability": "从一线部署，到越用越强的能力",
-        "Today’s agents can work. They do not yet reliably compound. The next frontier is an agent that can turn each deployment into validated capability for the next: discovering what matters, learning the right lesson from real work, and carrying forward only the changes that deserve to persist.": "今天的智能体已经能把事情做完，却还不会越做越好。真正难的下一步，是让每一次部署都为下一次留下一份经过验证的能力：搞清楚什么才重要，从真实工作里学到真正该学的东西，并且只把经得起检验的变化留下来。",
+        "TL;DR · CLOSED-LOOP RSI": "TL;DR · CLOSED-LOOP RSI",
+        "Most recursive self-improvement (RSI) systems discussed today are half-loop. They assume a Golden Verifier that keeps the model moving in the right direction. Like human learning and improvement, RSI faces three problems: How does a broad, vague goal become concrete action? Without a teacher, can we judge our own behavior and learn from it? How does experience become part of the way we act?": "今日大多数人谈论的 Recursive Self-Improvement（RSI）是“半环”的 RSI，假设存在着 Golden Verifier 一直指引模型方向前进。可类比人类学习和进步的过程，我们的 RSI 往往面临三个问题：宏观的模糊人生目标怎么拆解到具体的行动？没有老师评判行为时，能否正确自我判断、总结经验？经验如何内化到人的行为模式里？",
         "ByteDance Seed and TokenWave · September 1, 2026": "ByteDance Seed 与 TokenWave · 2026年9月1日",
-        "Why FDEs compound": "FDE 为何越做越强",
-        "Three problems": "三个问题",
-        "Experimental evidence": "实验证据",
-        "Where it breaks": "卡在哪里",
-        "Why forward-deployed work compounds": "一线部署为什么会越做越强",
-        "A great deployment does more than solve today’s problem. It makes tomorrow’s deployment better.": "一次真正好的部署，不只是把眼前的问题做完。它还应该让下一次部署变得更容易。",
-        "Every organization defines good work differently. Forward-deployed engineers close the gap between general capability and local productivity by discovering the real problem, delivering a working solution, learning what was reusable, and folding validated lessons back into the platform. Their leverage comes not only from local delivery, but from turning local work into reusable capability.": "每家公司对“什么叫做好”，标准都不一样。AI 产品真正落地时，最后一公里往往还需要人来补。FDE 会直接进入客户现场：先搞清楚客户真正要解决的问题，再做出能跑的方案；交付之后，还要判断哪些只是这家客户的特例，哪些经验下次还能用，并把经得起检验的部分沉淀回平台。FDE 的价值不只是交付这一单，更是把这一单变成平台下一次可以直接调用的能力。",
-        "The loop compounds only when a local fix becomes a validated capability that the next deployment can reuse.": "只有当现场的一次修补，经过验证，变成下一次部署可以直接拿来用的能力，这个闭环才会越转越强。否则，它只是又一个一次性方案。",
-        "From FDE to self-developing agent": "如果智能体也能像 FDE 一样成长",
-        "What if an agent could learn from deployments the way a great FDE does?": "智能体能不能也像优秀的 FDE 一样，从一次次部署中学会下一次怎么做？",
-        "A self-developing agent should turn deployment experience into validated capability that improves future deployments. Our work suggests this requires solving three distinct problems: deciding what is worth improving, extracting the right lesson from experience, and integrating the right change into the persistent system. Aspire, S³Gym, and HarnessDev study these problems from complementary angles.": "自我发展型智能体要做的，不只是把一次部署做完，而是把这次部署里积累的经验，变成经得起检验的能力，用到下一次部署上。要做到这一点，至少有三道关：先判断什么值得改，再从经验里学到真正该学的东西，最后把对的变化接进会长期运行的系统。Aspire、S³Gym 和 HarnessDev 分别从这三个角度研究同一个问题。",
-        "Find the right thing to improve": "先搞清楚该改什么",
-        "Core question": "核心问题",
-        "Learn the right lesson": "从经验里学到该学的",
-        "Make the right change persist": "让对的变化真正留下来",
+        "FDE analogy": "FDE 类比",
+        "Three questions": "三个问题",
+        "Main results": "主要结果",
+        "Why gains fail": "改动为何失效",
+        "An analogy: forward-deployed engineering": "一个现实类比：FDE",
+        "FDEs turn local work into reusable capability.": "FDE 把现场工作变成可复用能力。",
+        "Field work faces the same three tests: choose the right problem, learn from evidence, and keep only what the next project can reuse.": "一线工作也要经过同样的三项检验：问题是否选对、能否从证据中总结经验，以及留下的改动能否被下一次工作复用。",
+        "The final test is reuse: the next project must be able to use the result.": "最后一项检验是复用：下一次工作必须能用上这次的结果。",
+        "Three benchmarks · three questions": "三项 benchmark · 三个问题",
+        "Three questions for self-evolving agents": "Self-Evolving Agents 的三个问题",
+        "We break the path to closed-loop RSI into three questions, each studied with a separate benchmark.": "我们把 Closed-Loop RSI 要解决的问题拆成下面三个子问题，分别用一项 benchmark 研究。",
+        "What should the agent improve?": "Agent 该改什么？",
+        "Test": "检验",
+        "Can it learn from experience?": "Agent 能从经验中学习吗？",
+        "Can the improvement persist?": "改动能保留在系统里吗？",
         "Experimental evidence · three failure modes": "实验证据 · 三种失败模式",
-        "Changing an agent is easy. Knowing what actually improved is hard.": "改一个智能体很容易。难的是搞清楚，它到底有没有变好。",
-        "None of these studies runs inside a live customer deployment. Each isolates one step of the loop above in a setting where the ground truth is knowable—because that is the only way to tell a real gain from a local one. Across all three, the same pattern appears in different forms: a system can execute an update without improving the intended capability, accumulate experience without learning a better policy, or make promising local edits that fail to transfer. The panels below show where apparent self-improvement breaks down.": "这三项研究都没有直接放进真实客户现场。我们刻意把上面闭环中的三个环节拆开，放到答案可核验的环境里逐一测试。原因很简单：只有知道真值，才分得清能力是真的提升了，还是只在眼前这条轨迹上好看。三项研究看到了三种不同的“假进步”：系统完成了更新，目标能力却没变；积累了很多经历，却没学到更好的策略；现场修改一度有效，换个环境就失灵。下面三组结果，展示这些问题分别在哪里发生。",
-        "The evidence above shows which candidate changes survive evaluation. The case studies below explain why so many fail. Across all three, the same question recurs: which local signal deserves to shape the agent’s next starting point?": "上面的结果告诉我们，哪些改动经得住评测。接下来的三个案例解释，为什么更多改动没能留下。它们都绕不开同一个问题：一次局部反馈，凭什么决定智能体下一次从哪里出发？",
-        "Training is not improvement, remembering is not learning, and editing the system is not improving it. What separates each pair is a check the agent cannot pass on its own: an evaluation it did not choose, a decision it has not yet made, and a runtime it does not control.": "跑过训练，不等于能力变强；把历史记下来，不等于从中学会了什么；改过系统，也不等于系统真的更好。要把这些概念分开，必须依靠智能体自己无法包办的检验：一道不是它自己挑的评测、一次它还没有做过的决策，以及一套不受它控制的运行环境。",
-        "What deserves to compound?": "什么值得留下来，继续滚雪球？",
-        "Deployment is where self-improvement becomes useful.": "自我改进要产生价值，得发生在部署里。",
-        "Abstract self-improvement asks whether an AI system can make another AI system stronger. Deployment-grounded improvement asks a more consequential question: can an agent become more useful to the organization it serves, using evidence from real work—and can that learning improve the next deployment rather than remain a one-off fix?": "抽象地谈自我改进，问题往往是：一个 AI 系统能不能把另一个 AI 系统变得更强。但站在部署现场，更重要的问题其实是：智能体能不能根据真实工作留下的证据，越来越懂它所服务的组织？这一次学到的东西，能不能让下一次部署更好，而不是只解决一个孤立的问题？",
-        "We want to study agents that can grow into a role, not only complete a task.": "我们想研究的，是能逐渐胜任一个角色的智能体，而不只是一次次接任务、交答案。",
-        "That does not mean replacing an FDE end to end. It means giving an agent a role-level objective and asking whether it can discover what the organization means by good work, build tests and learning signals from imperfect feedback, and reorganize models, memory, and harness as evidence accumulates. In that sense, the long-term goal is FDE-like: not merely solving local problems, but turning repeated field work into compounding organizational capability.": "这并不是要让智能体从头到尾取代 FDE。我们更关心的是：如果给它一个角色层面的长期目标，它能不能逐渐摸清这家组织如何定义“好工作”；能不能从不完整、甚至彼此矛盾的反馈里，建立自己的测试与学习信号；又能不能随着证据积累，重新安排模型、记忆和执行框架。从这个角度看，长期目标确实很像 FDE：不只解决眼前一个问题，还能把反复的一线实践，变成整个组织下一次可以直接调用的能力。",
-        "Give the agent a platform, a role, and a customer environment. Each deployment should solve something useful now, create evidence about what mattered, and leave the agent—and the platform—better prepared for what comes next.": "给智能体一套平台、一个长期角色和一个真实客户环境。每次部署，既要解决一个当下有用的问题，也要留下证据，告诉我们什么真正重要。等任务结束时，智能体和平台都应该比开始时更清楚：下一次该怎么做。",
+        "Where self-evolution breaks": "自我演化在哪些环节失效",
+        "The target can be wrong, the lesson can fail to transfer, or the mechanism can exist in code but not at runtime.": "目标可能选错，经验可能无法迁移，机制也可能只写在代码里、没有真正运行。",
+        "Which changes should persist?": "哪些改动值得保留？",
+        "What these results mean in practice": "这些结果对实际应用意味着什么",
+        "We study agents that grow into a role, not just complete a task.": "我们研究能逐步胜任一个角色、而不只完成单次任务的 Agent。",
+        "We give an agent a role-level objective and ask whether it can infer what good work means in that organization, build tests from imperfect feedback, and update its model, memory, and harness as evidence accumulates. The aim is not to replace an FDE end to end. It is to turn repeated field work into reusable capability.": "我们给 Agent 一个角色级目标，并测试它能否理解组织对“好工作”的定义、从不完整反馈中构建测试，以及随证据积累更新模型、记忆和 Harness。目标不是完整替代 FDE，而是把重复的一线工作变成可复用能力。",
 
         "Language": "语言",
         "Explore this perspective": "阅读这篇文章",
-        "Two measures of a compounding deployment loop": "判断部署经验有没有真正沉淀的两个指标",
         "The forward-deployed learning loop": "FDE 如何把一次交付变成下一次的能力",
-        "Three complementary problems a self-developing agent must solve": "一个会成长的智能体，必须解决的三个问题",
+        "Three complementary problems a self-developing agent must solve": "闭环 RSI 需要解决的三个问题",
         "Research studies": "研究项目",
-        "Visible feedback gain compared with held-out gain": "可见反馈增益与 held-out 增益对比",
-        "Grouped bars comparing visible and held-out gains across five self-runtime lineages; Opus 4.8 is the only lineage whose held-out gain exceeds its visible gain": "分组柱状图比较五条自运行谱系的可见增益与 held-out 增益；只有 Opus 4.8 的 held-out 增益高于可见增益",
-        "Visible feedback and held-out gain values for all five lineages": "五条谱系的可见反馈增益与 held-out 增益数值",
-        "Held-out harness gain in the fixed Gemini executor ablations": "固定 Gemini 执行器消融实验中的 held-out harness 增益",
-        "Diverging bars showing positive held-out transfer for Opus and regressions for Qwen, DeepSeek, and GPT-5.5 under a fixed Gemini executor": "发散柱状图显示：在固定 Gemini 执行器下，Opus 实现正向 held-out 迁移，而 Qwen、DeepSeek 与 GPT-5.5 出现退化",
+        "Visible feedback gain compared with held-out gain": "可见反馈增益与留出评测增益对比",
+        "Grouped bars comparing visible and held-out gains across five self-runtime lineages; Opus 4.8 is the only lineage whose held-out gain exceeds its visible gain": "分组柱状图比较五条自运行谱系的可见反馈增益与留出评测增益；只有 Opus 4.8 的留出评测增益更高",
+        "Visible feedback and held-out gain values for all five lineages": "五条谱系的可见反馈增益与留出评测增益数值",
+        "Held-out harness gain in the fixed Gemini executor ablations": "固定 Gemini 执行器消融中的智能体运行框架留出评测增益",
+        "Diverging bars showing positive held-out transfer for Opus and regressions for Qwen, DeepSeek, and GPT-5.5 under a fixed Gemini executor": "发散柱状图显示：固定 Gemini 执行器后，Opus 的留出迁移为正，Qwen、DeepSeek 与 GPT-5.5 退化",
         "Choose the game shown across both S3Gym charts": "选择两张 S³Gym 图表共同展示的游戏",
         "Selected game AUC plus model comparison": "所选游戏的模型级 AUC+ 对比",
         "Grouped bar chart comparing History ICL and Summary Memory AUC plus by model": "分组柱状图按模型比较历史 ICL 与摘要记忆的 AUC+",
@@ -1814,7 +1930,7 @@
         "Show PvZ model comparison": "显示植物大战僵尸的模型对比",
         "Show Trust Evolution model comparison": "显示信任演化的模型对比",
         "Vague-target outcome progression": "模糊目标实验的结果推进过程",
-        "Bar chart showing 30 configuration-goal cells, 28 with an evaluated checkpoint, 21 with an eligible checkpoint, and one retained improvement. Hover or focus the retained-improvement bar to see the retention detail.": "柱状图显示 30 个配置—目标单元：28 个产生了已评估检查点，21 个检查点符合保留条件，最终只有 1 个改进被保留。悬停或聚焦于被保留的改进柱，可查看保留详情。",
+        "Bar chart showing 30 configuration-goal cells, 28 with an evaluated checkpoint, 21 with an eligible checkpoint, and one retained improvement. Hover or focus the retained-improvement bar to see the retention detail.": "柱状图显示 30 个配置—目标单元：28 个产出已评估的模型检查点，21 个产出进入后续筛选的合格模型检查点，最终保留 1 个改进。悬停或聚焦该柱可查看详情。",
         "One retained improvement. Two candidates beat base; one cleared the retention threshold and was kept.": "一个改进被保留。两个候选超过基线，其中一个越过保留门槛并被保留下来。",
         "Self-optimized mathematics checkpoint trajectory": "自优化数学检查点轨迹",
         "Line chart showing self-trained mathematics checkpoints improving from 0.79 to 1.75 to 2.38 while remaining below the unevolved baseline of 17.86": "折线图显示自训练数学检查点从 0.79 提升到 1.75、再到 2.38，但始终低于 17.86 的未演化基线",
@@ -1824,7 +1940,7 @@
         "Normalized above-baseline area comparison counts. Summary Memory versus History ICL: Chess three to three with one tie; Minesweeper three to four; Nullify four to two with one tie; Tetris five to one with one tie; Snake three to four; Plants versus Zombies three to four; Trust four to three.": "归一化基线上方面积的胜出次数。摘要记忆对历史 ICL：国际象棋 3 比 3、另有 1 次平局；扫雷 3 比 4；Nullify 4 比 2、另有 1 次平局；俄罗斯方块 5 比 1、另有 1 次平局；贪吃蛇 3 比 4；植物大战僵尸 3 比 4；信任演化 4 比 3。",
         "Two aligned line charts show Qwen3-8B parameter-training trajectories. Trust Evolution starts at zero, rises as high as 30, and beats its baseline at 18 of 19 updated checkpoints. Plants versus Zombies starts at 23, falls to 6 at the first update, and remains at 6 for all 19 updated checkpoints.": "两张对齐折线图展示 Qwen3-8B 的参数训练轨迹。信任演化从 0 开始，最高升至 30，并在 19 个更新检查点中的 18 个超过基线；植物大战僵尸从 23 开始，第一次更新即降至 6，之后 19 个更新检查点全部停留在 6。",
         "Across 64 official version switches, 58 alter execution or control flow, 37 alter tools, 17 alter lifecycle recovery, 16 alter context, four alter state, and none modifies a standalone verifier. Categories overlap.": "在 64 次正式版本切换中，58 次修改执行或控制流，37 次修改工具，17 次修改生命周期恢复，16 次修改上下文，4 次修改状态，没有一次修改独立验证器。各类别可以重叠。",
-        "Among 18 Code harness artifacts, 11 define a State class, one exposes a state-saving interface, and one implements periodic checkpointing. Across 26,679 recorded task trajectories, zero checkpoint events are observed. Separately, 18 of 108 component instances are never observed, and all of them belong to state or memory.": "18 个代码框架中，11 个定义了 State 类，但只有 1 个提供状态保存接口，只有 1 个实现周期性检查点。26,679 条已记录的任务轨迹里，实际触发的检查点事件为 0。另有 18 / 108 个组件实例从未在运行中出现，而且全部属于状态或记忆。"
+        "Comparison of state mechanisms declared in 18 Code harness artifacts and their observed runtime activity.": "比较 18 个 Code Harness 中声明的状态机制与实际运行记录。"
       };
 
       const gameNames = {
@@ -1909,8 +2025,8 @@
         }
         document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
         document.title = language === "zh"
-          ? "自我发展型智能体：从一线部署，到越用越强的能力"
-          : "Self-Developing Agents — Turning Field Deployments into Validated, Reusable Capability";
+          ? "Self-Developing Agents：从半环 RSI 到闭环 RSI"
+          : "Self-Developing Agents — From Half-Loop to Closed-Loop RSI";
         document.querySelectorAll("[data-lang]").forEach(button => {
           const active = button.dataset.lang === language;
           button.classList.toggle("active", active);
@@ -1954,7 +2070,6 @@
       const tabs = [...board.querySelectorAll('[role="tab"]')];
       const panels = [...board.querySelectorAll('[role="tabpanel"]')];
       let activeIndex = 0;
-      let cycle;
 
       const select = (index, moveFocus = false) => {
         activeIndex = (index + tabs.length) % tabs.length;
@@ -1984,12 +2099,6 @@
         if (moveFocus) tabs[activeIndex].focus();
       };
 
-      const startCycle = () => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        window.clearInterval(cycle);
-        cycle = window.setInterval(() => select(activeIndex + 1), 5200);
-      };
-
       tabs.forEach((tab, index) => {
         tab.addEventListener('pointerenter', () => select(index));
         tab.addEventListener('click', () => select(index));
@@ -1998,14 +2107,6 @@
           event.preventDefault();
           select(activeIndex + (event.key === 'ArrowRight' ? 1 : -1), true);
         });
-      });
-
-      board.addEventListener('pointerenter', () => window.clearInterval(cycle));
-      board.addEventListener('pointerdown', () => window.clearInterval(cycle));
-      board.addEventListener('pointerleave', startCycle);
-      board.addEventListener('focusin', () => window.clearInterval(cycle));
-      board.addEventListener('focusout', event => {
-        if (!board.contains(event.relatedTarget)) startCycle();
       });
 
       const s3Models = ['GPT-4o', 'GPT-4.1', 'o3-mini', 'Gemini 2.5 F', 'Gemini 2.5 P', 'GPT-5.5', 'Gemini 3.5 F'];
@@ -2113,7 +2214,6 @@
       renderS3Bars('Chess');
 
       select(0);
-      startCycle();
     })();
 
     (() => {
