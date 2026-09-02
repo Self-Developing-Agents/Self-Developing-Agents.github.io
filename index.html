@@ -18,8 +18,8 @@
       --reading: 760px;
       --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
       --font-serif: Georgia, "Times New Roman", Times, serif;
-      --font-sans-zh: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
-      --font-serif-zh: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, SimSun, serif;
+      --font-sans-zh: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      --font-serif-zh: Georgia, "Times New Roman", "Songti SC", STSong, "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
     }
 
     * { box-sizing: border-box; }
@@ -34,6 +34,7 @@
     html[lang="zh-CN"] body {
       font-family: var(--font-sans-zh);
       font-variant-east-asian: normal;
+      font-kerning: normal;
     }
     a { color: inherit; }
     .shell { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
@@ -397,7 +398,27 @@
     }
     .overview-index { display: block; margin-bottom: 30px; color: var(--layer-accent); font-size: 11px; font-weight: 760; letter-spacing: .09em; }
     .overview-layer h3 { margin: 0; font-size: 23px; }
-    .overview-layer .paper-chip { display: block; margin: 11px 0 16px; color: var(--layer-accent); font-size: 11px; font-weight: 720; letter-spacing: .04em; text-transform: uppercase; }
+    .overview-paper-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 11px 0 16px; }
+    .overview-layer .paper-chip { display: block; color: var(--layer-accent); font-size: 11px; font-weight: 720; letter-spacing: .04em; text-transform: uppercase; }
+    .overview-paper-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex: 0 0 auto;
+      padding: 3px 0;
+      color: var(--layer-accent);
+      font-size: 10px;
+      font-weight: 720;
+      letter-spacing: .035em;
+      text-decoration-line: underline;
+      text-decoration-color: color-mix(in srgb, var(--layer-accent) 42%, transparent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+    .overview-paper-link span { transition: transform .16s ease; }
+    .overview-paper-link:hover span,
+    .overview-paper-link:focus-visible span { transform: translate(2px, -2px); }
+    .overview-paper-link:focus-visible { outline: 2px solid color-mix(in srgb, var(--layer-accent) 45%, transparent); outline-offset: 3px; }
     .overview-layer p { margin: 0; color: #50514d; font-family: var(--font-serif); font-size: 14px; line-height: 1.62; }
     .overview-output { margin-top: 17px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.45; }
     .overview-output strong { display: block; margin-top: 4px; color: #333431; font-size: 12px; font-weight: 650; }
@@ -934,10 +955,6 @@
     html[lang="zh-CN"] h1 {
       max-width: 1080px;
       font-family: var(--font-sans);
-      font-size: clamp(50px, 6vw, 80px);
-      font-weight: 650;
-      line-height: 1.1;
-      letter-spacing: -.035em;
     }
     html[lang="zh-CN"] h2 {
       font-size: clamp(34px, 3.6vw, 46px);
@@ -967,17 +984,33 @@
     }
     html[lang="zh-CN"] .lead { font-size: 23px; line-height: 1.62; letter-spacing: -.008em; }
     html[lang="zh-CN"] .thesis p { font-size: 21px; line-height: 1.58; letter-spacing: -.008em; }
+    html[lang="zh-CN"] .byline { font-size: 12px; line-height: 1.4; letter-spacing: .02em; }
+    html[lang="zh-CN"] .fde-loop-note { font-size: 12px; line-height: 1.5; }
+    html[lang="zh-CN"] .coming-soon p { font-size: 16px; line-height: 1.68; }
+    html[lang="zh-CN"] .paper-row p { font-size: 17px; line-height: 1.68; }
     html[lang="zh-CN"] .overview-head p,
     html[lang="zh-CN"] .evidence-intro p,
     html[lang="zh-CN"] .last-mile-copy p { font-size: 16px; line-height: 1.72; }
     html[lang="zh-CN"] .overview-layer p { font-size: 14px; line-height: 1.68; }
     html[lang="zh-CN"] .study-copy p { font-size: 17px; line-height: 1.68; }
     html[lang="zh-CN"] .study-copy .limit { font-size: 12px; line-height: 1.6; }
-    html[lang="zh-CN"] .section-label,
-    html[lang="zh-CN"] .kicker,
+    html[lang="zh-CN"] .section-label { letter-spacing: .04em; }
+    html[lang="zh-CN"] .kicker { letter-spacing: .02em; }
     html[lang="zh-CN"] .board-eyebrow,
-    html[lang="zh-CN"] .mini-sub,
-    html[lang="zh-CN"] .byline { letter-spacing: .04em; }
+    html[lang="zh-CN"] .mini-sub { letter-spacing: 0; }
+    html[lang="zh-CN"] .overview-index,
+    html[lang="zh-CN"] .board-tab .index,
+    html[lang="zh-CN"] .study-copy .analysis-num,
+    html[lang="zh-CN"] .fde-step small { letter-spacing: .035em; }
+
+    @media (min-width: 581px) {
+      html[lang="zh-CN"] .chart-label,
+      html[lang="zh-CN"] .chart-value,
+      html[lang="zh-CN"] .chart-legend,
+      html[lang="zh-CN"] .s3-control-copy span,
+      html[lang="zh-CN"] .game-picker button,
+      html[lang="zh-CN"] .mini-figure .mini-sub { font-size: 10px; }
+    }
 
     @media (max-width: 900px) {
       .last-mile-head { grid-template-columns: 1fr; gap: 38px; }
@@ -1163,7 +1196,6 @@
       .lead { font-size: 22px; }
       .footer-inner { flex-direction: column; }
       html[lang="zh-CN"] .hero { min-height: auto; padding: 58px 0 54px; }
-      html[lang="zh-CN"] h1 { font-size: clamp(42px, 13vw, 56px); line-height: 1.12; }
       html[lang="zh-CN"] h2 { font-size: clamp(30px, 8.7vw, 38px); line-height: 1.2; }
       html[lang="zh-CN"] p,
       html[lang="zh-CN"] li { font-size: 17px; line-height: 1.7; }
@@ -1237,23 +1269,23 @@
           <div class="overview-layer" style="--layer-accent:#2f6759">
             <span class="overview-index">01 / TARGET</span>
             <h3>What should the agent improve?</h3>
-            <span class="paper-chip">Aspire</span>
+            <div class="overview-paper-row"><span class="paper-chip">Aspire</span><a class="overview-paper-link" href="https://arxiv.org/abs/2608.31111" target="_blank" rel="noopener noreferrer" aria-label="View Aspire paper">View paper <span aria-hidden="true">↗</span></a></div>
             <p>Aspire gives the agent a broad goal such as “improve mathematical reasoning,” without revealing the downstream task or final evaluation. The agent must decide what to learn and how.</p>
             <div class="overview-output">Test<strong>Does the agent-built objective transfer to the hidden evaluation?</strong></div>
           </div>
           <div class="overview-layer" style="--layer-accent:#486a8a">
             <span class="overview-index">02 / EXPERIENCE</span>
             <h3>Can it learn from experience?</h3>
-            <span class="paper-chip">S³Gym</span>
+            <div class="overview-paper-row"><span class="paper-chip">S³Gym</span><a class="overview-paper-link" href="https://arxiv.org/abs/2608.31100" target="_blank" rel="noopener noreferrer" aria-label="View S³Gym paper">View paper <span aria-hidden="true">↗</span></a></div>
             <p>S³Gym tests whether an agent can generate experience, judge what worked, and turn the result into better future decisions.</p>
             <div class="overview-output">Test<strong>Does the experience transfer to held-out conditions?</strong></div>
           </div>
           <div class="overview-layer" style="--layer-accent:#9b4c36">
             <span class="overview-index">03 / SYSTEM</span>
             <h3>Can the improvement persist?</h3>
-            <span class="paper-chip">HarnessDev</span>
+            <div class="overview-paper-row"><span class="paper-chip">HarnessDev</span><a class="overview-paper-link" href="https://arxiv.org/abs/2609.01437" target="_blank" rel="noopener noreferrer" aria-label="View HarnessDev paper">View paper <span aria-hidden="true">↗</span></a></div>
             <p>HarnessDev tests whether a model can build a runnable agent harness, then evolve it using downstream execution feedback.</p>
-            <div class="overview-output">Test<strong>Does the harness work on held-out tasks and with another executor?</strong></div>
+            <div class="overview-output">Test<strong>Do changes generalize to held-out tasks, and does evolution still work under a fixed executor?</strong></div>
           </div>
         </div>
       </div>
@@ -1290,7 +1322,7 @@
           <div class="board-stage" aria-live="polite">
             <div class="board-panel" id="panel-harness" role="tabpanel" aria-labelledby="tab-harness" data-panel="harness" data-accent="#9b4c36" hidden>
               <div class="board-head">
-                <div><div class="board-eyebrow">Harness evolution · visible feedback + post-freeze held-out evaluation</div><h3>Do harness improvements transfer?</h3></div>
+                <div><div class="board-eyebrow">Harness evolution · visible feedback + post-freeze held-out evaluation</div><h3>Do harness improvements generalize to held-out tasks?</h3></div>
                 <div class="board-metric"><strong class="metric-words">53.1% direction agreement</strong><span>34 of 64 comparable version switches move in the same direction</span></div>
               </div>
               <div class="board-body">
@@ -1321,9 +1353,9 @@
                     </g>
                   </svg>
                 </div>
-                <div class="viz-card" aria-label="Held-out harness gain in the fixed Gemini executor ablations">
-                  <div class="viz-head"><strong>Held-out gain after an executor swap</strong><span>Held-out-630 gain under a fixed Gemini executor · declared final minus H₀ · the Gemini lineage is omitted because Gemini is the fixed executor</span></div>
-                  <svg viewBox="0 0 500 300" role="img" aria-label="Diverging bars showing positive held-out transfer for Opus and regressions for Qwen, DeepSeek, and GPT-5.5 under a fixed Gemini executor">
+                <div class="viz-card" aria-label="Held-out evolution gain in four separate fixed-Gemini runs">
+                  <div class="viz-head"><strong>Does evolution still work under a fixed executor?</strong><span>Four separate evolution runs with Gemini as executor throughout · held-out-630 gain from each run’s own H₀ to its declared final</span></div>
+                  <svg viewBox="0 0 500 300" role="img" aria-label="Diverging bars showing held-out gains from four separate evolution runs with Gemini as executor throughout; Opus improves from its own H0 while Qwen, DeepSeek, and GPT-5.5 decline from theirs">
                     <path class="chart-grid" d="M48 43H480M48 90.3H480M48 137.5H480M48 184.8H480M48 232H480"/><path class="chart-axis" d="M48 43V232M48 90.3H480"/>
                     <g class="chart-label"><text x="38" y="46" text-anchor="end">+4</text><text x="38" y="93" text-anchor="end">0</text><text x="38" y="140.5" text-anchor="end">−4</text><text x="38" y="187.8" text-anchor="end">−8</text><text x="38" y="235" text-anchor="end">−12</text></g>
                     <rect class="chart-bar" x="72" y="58.4" width="52" height="31.9" rx="2"/><text class="chart-value" x="98" y="51" text-anchor="middle">+2.70</text>
@@ -1339,7 +1371,7 @@
                   </svg>
                 </div>
               </div>
-              <div class="board-note"><span class="takeaway"><strong>Visible gains often fail to transfer.</strong> Feedback and held-out scores agree on only 34 of 64 comparable version switches. Just 2 of 9 declared final versions are best on the held-out set.</span><span>Nine single trajectories · 73 official versions · 64 adjacent switches</span></div>
+              <div class="board-note"><span class="takeaway"><strong>Visible gains often do not hold on held-out tasks.</strong> Feedback and held-out scores agree on only 34 of 64 comparable version switches. Just 2 of 9 declared final versions are best on the held-out set.</span><span>Nine single trajectories · 73 official versions · 64 adjacent switches</span></div>
             </div>
 
             <div class="board-panel" id="panel-s3gym" role="tabpanel" aria-labelledby="tab-s3gym" data-panel="s3gym" data-accent="#486a8a" hidden>
@@ -1620,7 +1652,7 @@
       <article>
         <section id="synthesis">
           <h2>Which changes should persist?</h2>
-          <p class="lead">These results come from the three benchmarks: Aspire tests whether the target was chosen well, S³Gym tests whether experience improves the next decision, and HarnessDev tests whether harness changes hold up on held-out tasks and under a different executor.</p>
+          <p class="lead">These results come from the three benchmarks: Aspire tests whether the target was chosen well, S³Gym tests whether experience improves the next decision, and HarnessDev tests whether harness changes generalize to held-out tasks and whether evolution still works under a fixed executor.</p>
           <div class="observation-grid">
             <div class="observation">
               <div class="big-num">01</div>
@@ -1632,7 +1664,7 @@
             </div>
             <div class="observation">
               <div class="big-num">03</div>
-              <div><h3>Test the harness after freezing it and changing the executor.</h3><p>Visible and held-out scores agree on 34 of 64 switches. Only 2 of 9 declared final versions are held-out optimal. Under a fixed Gemini executor, three of four lineages regress. Keep changes only with versioning and rollback.</p></div>
+              <div><h3>Test evolution on held-out tasks under a fixed executor.</h3><p>Visible and held-out scores agree on 34 of 64 switches. Only 2 of 9 declared final versions are held-out optimal. In four separate evolution runs with Gemini as executor throughout, only Opus improves over its own H₀ on held-out tasks; the other three regress. Keep changes only with versioning and rollback.</p></div>
             </div>
           </div>
         </section>
@@ -1677,7 +1709,7 @@
           <p>We give an agent a role-level objective and ask whether it can infer what good work means in that organization, build tests from imperfect feedback, and update its model, memory, and harness as evidence accumulates. The aim is not to replace an FDE end to end. It is to turn repeated field work into reusable capability.</p>
           <div class="program-block">
             <h3>What the benchmarks provide</h3>
-            <p class="program-intro">Each benchmark also provides a reusable test. Aspire pairs hidden evaluation with auditable trajectories. S³Gym separates exploration from strict held-out evaluation and checks self-judgment with executable verifiers. HarnessDev freezes runnable artifacts, then tests held-out generalization and executor transfer.</p>
+            <p class="program-intro">Each benchmark also provides a reusable test. Aspire pairs hidden evaluation with auditable trajectories. S³Gym separates exploration from strict held-out evaluation and checks self-judgment with executable verifiers. HarnessDev freezes runnable artifacts and tests held-out generalization. Its Creation stage uses Unified-Eval for cross-executor portability; its Evolution stage also runs separate lineages under a fixed Gemini executor.</p>
             <div class="program">
               <div class="paper-row">
                 <div class="paper-name">Aspire</div>
@@ -1717,6 +1749,9 @@
         "Experience integration": "经验怎么用进去",
         "System integration": "系统怎么改下去",
         "View paper": "阅读论文",
+        "View Aspire paper": "阅读 Aspire 论文",
+        "View S³Gym paper": "阅读 S³Gym 论文",
+        "View HarnessDev paper": "阅读 HarnessDev 论文",
 
         "Platform": "平台",
         "Start with a general platform": "从通用平台出发",
@@ -1738,21 +1773,21 @@
         "Does the experience transfer to held-out conditions?": "这些经验能迁移到留出条件吗？",
         "03 / SYSTEM": "03 / 系统",
         "HarnessDev tests whether a model can build a runnable agent harness, then evolve it using downstream execution feedback.": "HarnessDev 测试模型能否构建可运行的 Agent Harness，并根据下游执行反馈继续改进它。",
-        "Does the harness work on held-out tasks and with another executor?": "这个 Harness 能在留出任务和其他执行器上继续工作吗？",
+        "Do changes generalize to held-out tasks, and does evolution still work under a fixed executor?": "改动能泛化到留出任务吗？使用固定执行器重新演化时，Evolution 还能有效吗？",
 
         "Learn from experience": "从经验中学习",
         "Create and evolve the harness": "创建并演化 Harness",
         "Harness evolution · visible feedback + post-freeze held-out evaluation": "Harness 演化 · 可见反馈 + 冻结后的留出评测",
-        "Do harness improvements transfer?": "Harness 的改进能迁移吗？",
+        "Do harness improvements generalize to held-out tasks?": "Harness 的改进能泛化到留出任务吗？",
         "53.1% direction agreement": "53.1% 方向一致率",
         "34 of 64 comparable version switches move in the same direction": "64 次可比较的版本切换中，有 34 次方向一致",
         "Visible gain vs held-out gain": "可见增益与留出增益对比",
         "Declared final minus H₀ · five self-runtime creator–executor lineages": "最终版本相对 H₀ 的变化 · 创建器与执行器使用同一模型的 5 条谱系",
         "Visible feedback pair": "可见反馈配对",
         "SWE-Pro held-out 630": "SWE-Pro-630 留出集",
-        "Held-out gain after an executor swap": "更换执行器后的留出增益",
-        "Held-out-630 gain under a fixed Gemini executor · declared final minus H₀ · the Gemini lineage is omitted because Gemini is the fixed executor": "固定 Gemini 执行器下 SWE-Pro 留出集（630）的增益 · 最终版本相对 H₀ · Gemini 谱系即固定执行器，故省略",
-        "Visible gains often fail to transfer.": "可见增益经常无法迁移。",
+        "Does evolution still work under a fixed executor?": "固定执行器下，Evolution 还能有效吗？",
+        "Four separate evolution runs with Gemini as executor throughout · held-out-630 gain from each run’s own H₀ to its declared final": "四条独立的 Evolution 谱系全程由 Gemini 执行 · SWE-Pro-630 留出集上，各自最终版本相对各自 H₀ 的增益",
+        "Visible gains often do not hold on held-out tasks.": "可见反馈上的增益往往无法在留出任务上保持。",
         "Feedback and held-out scores agree on only 34 of 64 comparable version switches. Just 2 of 9 declared final versions are best on the held-out set.": "64 次可比较的版本切换中，可见反馈与留出评测得分只有 34 次方向一致。9 个最终版本中，只有 2 个在留出评测上最优。",
         "Nine single trajectories · 73 official versions · 64 adjacent switches": "9 条单轨迹 · 73 个正式版本 · 64 次相邻切换",
 
@@ -1862,20 +1897,20 @@
         "checkpoint events": "检查点事件",
         "across 26,679 task trajectories": "在 26,679 条任务轨迹中",
         "18 / 108 components never observed · all state or memory": "108 个组件中有 18 个从未被观察到 · 全部属于状态或记忆",
-        "These results come from the three benchmarks: Aspire tests whether the target was chosen well, S³Gym tests whether experience improves the next decision, and HarnessDev tests whether harness changes hold up on held-out tasks and under a different executor.": "下面三条分别来自 Aspire、S³Gym 和 HarnessDev 的结果：Aspire 检查目标是否选对，S³Gym 检查经验能否改善下一次决策，HarnessDev 检查 Harness 改动能否通过留出任务和更换执行模型后的检验。",
+        "These results come from the three benchmarks: Aspire tests whether the target was chosen well, S³Gym tests whether experience improves the next decision, and HarnessDev tests whether harness changes generalize to held-out tasks and whether evolution still works under a fixed executor.": "下面三条分别来自 Aspire、S³Gym 和 HarnessDev 的结果：Aspire 检查目标是否选对，S³Gym 检查经验能否改善下一次决策，HarnessDev 检查 Harness 改动能否泛化到留出任务，以及固定执行器下的 Evolution 是否仍然有效。",
         "Test the target on an evaluation the agent cannot see.": "用 Agent 看不到的评测检验目标。",
         "Twenty-one of 30 Aspire cells produced an eligible checkpoint; only one retained a gain. With vague goals, decision time rises, active training and evaluation fall, and LoRA use increases from 24.1% to 89.8%. The search changed. The target was not yet validated.": "Aspire 的 30 个单元中，21 个产出了进入后续筛选的检查点，最终只有 1 个增益被保留。面对模糊目标，决策时间增加，主动训练与评测时间减少，LoRA 使用率从 24.1% 升至 89.8%。搜索过程变了，但目标仍未得到验证。",
         "Test the lesson on the next decision.": "用下一次决策检验经验。",
         "Self-judgment barely predicts the next gain (ρ = −0.010 and −0.018). No experience representation wins across environments, and changing the normalization reorders the leader. Choose the pathway per environment and confirm it on held-out decisions.": "自我判断几乎不能预测下一次增益（ρ = −0.010、−0.018）。没有一种经验表示能在所有环境中领先，改变归一化方式还会重排名次。经验路径应按环境选择，并在留出决策上验证。",
-        "Test the harness after freezing it and changing the executor.": "冻结 Harness，再更换执行器测试。",
-        "Visible and held-out scores agree on 34 of 64 switches. Only 2 of 9 declared final versions are held-out optimal. Under a fixed Gemini executor, three of four lineages regress. Keep changes only with versioning and rollback.": "64 次版本切换中，可见反馈与留出评测得分只有 34 次方向一致。9 个最终版本中，只有 2 个在留出评测上最优。换成固定 Gemini 执行器后，4 条谱系中有 3 条退化。保留改动前，需要版本管理和回滚。",
+        "Test evolution on held-out tasks under a fixed executor.": "在固定执行器下进行 Evolution，再用留出任务检验结果。",
+        "Visible and held-out scores agree on 34 of 64 switches. Only 2 of 9 declared final versions are held-out optimal. In four separate evolution runs with Gemini as executor throughout, only Opus improves over its own H₀ on held-out tasks; the other three regress. Keep changes only with versioning and rollback.": "64 次版本切换中，可见反馈与留出评测得分只有 34 次方向一致。9 个最终版本中，只有 2 个在留出评测上最优。在四条全程由 Gemini 执行的独立 Evolution 谱系中，只有 Opus 的留出得分高于其自身 H₀，另外三条均退化。保留改动前，需要版本管理和回滚。",
 
         "A useful self-evolving agent must become better at real work, not just score higher on public benchmarks.": "Self-Evolving Agent 不应只在公开 benchmark 上得分更高，还要把真实工作做得更好。",
         "It must adapt to the organization’s goals, workflows, data, and quality standards without turning every local workaround into permanent complexity.": "它需要适应组织的目标、流程、数据和质量标准，同时避免把每个局部补丁变成永久的系统复杂度。",
         "The goal is not constant change. It is knowing which changes to keep.": "目标不是不断修改自己，而是知道哪些改动值得保留。",
         "Our research goal": "我们的研究目标",
         "What the benchmarks provide": "三项 benchmark 提供了什么",
-        "Each benchmark also provides a reusable test. Aspire pairs hidden evaluation with auditable trajectories. S³Gym separates exploration from strict held-out evaluation and checks self-judgment with executable verifiers. HarnessDev freezes runnable artifacts, then tests held-out generalization and executor transfer.": "每项 benchmark 也提供了一套可复用的测试。Aspire 把隐藏评测与可审计轨迹配对。S³Gym 分开探索与严格留出评测，并用可执行验证器检查自我判断。HarnessDev 先冻结可运行产物，再测试留出泛化和执行器迁移。",
+        "Each benchmark also provides a reusable test. Aspire pairs hidden evaluation with auditable trajectories. S³Gym separates exploration from strict held-out evaluation and checks self-judgment with executable verifiers. HarnessDev freezes runnable artifacts and tests held-out generalization. Its Creation stage uses Unified-Eval for cross-executor portability; its Evolution stage also runs separate lineages under a fixed Gemini executor.": "每项 benchmark 也提供了一套可复用的测试。Aspire 把隐藏评测与可审计轨迹配对。S³Gym 分开探索与严格留出评测，并用可执行验证器检查自我判断。HarnessDev 先冻结可运行产物，再测试留出泛化。Creation 阶段通过 Unified-Eval 测试跨执行器可移植性；Evolution 阶段则在固定 Gemini 执行器下独立运行新的谱系。",
         "Aspire asks whether an agent can choose what to learn from a vague goal. It includes six capability goals, a sealed 520-item expert evaluation, and a minimal interactive environment for weight and harness updates. It also provides 48 matched vague-goal/explicit-task run pairs with auditable trajectories.": "Aspire 测试 Agent 能否从模糊目标中确定学习方向。它包含 6 个能力目标、520 道专家编写的隐藏评测题，以及一个支持权重和 Harness 更新的最小交互环境。它还提供 48 对“模糊目标／明确任务”匹配运行及可审计轨迹。",
         "S³Gym asks whether an agent can turn experience into better future decisions. It separates Self-Testing, Self-Judging, and Self-Improvement across seven verifier-backed games. It compares raw-history ICL, summary memory, and parameter training, with seven complete context-level models and a separate 20-checkpoint Qwen3-8B training study.": "S³Gym 测试 Agent 能否把经验转成更好的后续决策。它在 7 个带可执行验证器的游戏中分开评测 Self-Testing、Self-Judging 和 Self-Improvement。它比较原始历史 ICL、摘要记忆和参数训练：上下文实验使用 7 个完整模型，另有一项 Qwen3-8B 的 20 检查点训练实验。",
         "HarnessDev evaluates whether a model can build a runnable agent harness and evolve it through downstream execution feedback. It evaluates the harness itself on held-out tasks, rather than looking only at task outputs.": "HarnessDev 评测模型能否构建可运行的 Agent Harness，并根据下游执行反馈继续改进 Harness。它在留出任务上评测 Harness 本身，而不只看任务输出。",
@@ -1915,8 +1950,8 @@
         "Visible feedback gain compared with held-out gain": "可见反馈增益与留出评测增益对比",
         "Grouped bars comparing visible and held-out gains across five self-runtime lineages; Opus 4.8 is the only lineage whose held-out gain exceeds its visible gain": "分组柱状图比较五条自运行谱系的可见反馈增益与留出评测增益；只有 Opus 4.8 的留出评测增益更高",
         "Visible feedback and held-out gain values for all five lineages": "五条谱系的可见反馈增益与留出评测增益数值",
-        "Held-out harness gain in the fixed Gemini executor ablations": "固定 Gemini 执行器消融中的智能体运行框架留出评测增益",
-        "Diverging bars showing positive held-out transfer for Opus and regressions for Qwen, DeepSeek, and GPT-5.5 under a fixed Gemini executor": "发散柱状图显示：固定 Gemini 执行器后，Opus 的留出迁移为正，Qwen、DeepSeek 与 GPT-5.5 退化",
+        "Held-out evolution gain in four separate fixed-Gemini runs": "四条独立固定 Gemini Evolution 谱系的留出评测增益",
+        "Diverging bars showing held-out gains from four separate evolution runs with Gemini as executor throughout; Opus improves from its own H0 while Qwen, DeepSeek, and GPT-5.5 decline from theirs": "发散柱状图显示四条全程由 Gemini 执行的独立 Evolution 谱系的留出增益：Opus 相对自身 H₀ 提高，Qwen、DeepSeek 与 GPT-5.5 相对各自 H₀ 下降",
         "Choose the game shown across both S3Gym charts": "选择两张 S³Gym 图表共同展示的游戏",
         "Selected game AUC plus model comparison": "所选游戏的模型级 AUC+ 对比",
         "Grouped bar chart comparing History ICL and Summary Memory AUC plus by model": "分组柱状图按模型比较历史 ICL 与摘要记忆的 AUC+",
