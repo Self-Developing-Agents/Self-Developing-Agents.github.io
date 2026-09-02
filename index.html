@@ -2072,14 +2072,12 @@
 
       const setLanguage = next => {
         language = next === "zh" ? "zh" : "en";
-        try { localStorage.setItem("sda-language", language); } catch (_) {}
         applyLanguage(document.body);
       };
 
       document.querySelectorAll("[data-lang]").forEach(button => {
         button.addEventListener("click", () => setLanguage(button.dataset.lang));
       });
-      try { language = localStorage.getItem("sda-language") === "zh" ? "zh" : "en"; } catch (_) {}
       applyLanguage(document.body);
 
       const observer = new MutationObserver(mutations => {
