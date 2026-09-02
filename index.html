@@ -1090,10 +1090,9 @@
         <button class="papers-trigger" type="button" aria-expanded="false" aria-controls="papers-menu" aria-haspopup="true"><span>Papers</span></button>
       </div>
       <div class="papers-menu" id="papers-menu" hidden>
-        <!-- Replace the remaining placeholder arXiv ID below when the paper is published. -->
         <a class="paper-menu-item" href="https://arxiv.org/abs/2608.31111" target="_blank" rel="noopener noreferrer"><span><strong>Aspire</strong><small>Target formation · the vague-target study</small></span><span class="paper-action">View paper <span aria-hidden="true">↗</span></span></a>
         <a class="paper-menu-item" href="https://arxiv.org/abs/2608.31100" target="_blank" rel="noopener noreferrer"><span><strong>S³Gym</strong><small>Experience integration</small></span><span class="paper-action">View paper <span aria-hidden="true">↗</span></span></a>
-        <a class="paper-menu-item" href="https://arxiv.org/abs/REPLACE_WITH_HARNESSDEV_ID" target="_blank" rel="noopener noreferrer"><span><strong>HarnessDev</strong><small>System integration</small></span><span class="paper-action">View paper <span aria-hidden="true">↗</span></span></a>
+        <a class="paper-menu-item" href="https://arxiv.org/abs/2609.01437" target="_blank" rel="noopener noreferrer"><span><strong>HarnessDev</strong><small>System integration</small></span><span class="paper-action">View paper <span aria-hidden="true">↗</span></span></a>
       </div>
     </nav>
 
@@ -1581,17 +1580,6 @@
     </div>
   </footer>
   <script>
-    // Keeps unpublished papers from shipping as dead arXiv links.
-    (() => {
-      document.querySelectorAll('.paper-menu-item[href*="REPLACE_WITH"]').forEach(item => {
-        item.removeAttribute("target");
-        item.setAttribute("aria-disabled", "true");
-        item.addEventListener("click", event => event.preventDefault());
-        const action = item.querySelector(".paper-action");
-        if (action) action.textContent = "Coming soon";
-      });
-    })();
-
     (() => {
       const ZH = {
         "Self-Developing Agents": "自我发展型智能体",
@@ -1604,7 +1592,6 @@
         "Experience integration": "经验怎么用进去",
         "System integration": "系统怎么改下去",
         "View paper": "阅读论文",
-        "Coming soon": "即将发布",
 
         "Outcome value": "对客户的价值",
         "Are deployments solving increasingly important problems for the customer?": "一次次部署之后，我们解决的问题是否真的更重要了？",
